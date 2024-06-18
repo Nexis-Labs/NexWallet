@@ -2,7 +2,7 @@ import { FC, HTMLAttributes, PropsWithChildren, useRef } from "react";
 import classNames from "clsx";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { isPopupWindow } from "lib/ext/view";
-
+import "./custom.css";
 import { WalletStatus } from "core/types";
 import { TEvent, trackEvent } from "core/client";
 
@@ -36,7 +36,7 @@ import FiatAmount from "../elements/FiatAmount";
 import InteractionWithDapp from "../blocks/popup/InteractionWithDapp";
 import { useLazyAtomValue } from "lib/atom-utils";
 import ProfileButton from "../elements/ProfileButton";
-import PopupBgImage from "app/images/popup-bg.svg"; //stefan replace this image
+// import PopupBgImage from "app/images/popup-bg.svg"; //stefan replace this image
 import RoundedButton from "../elements/RoundedButton";
 
 let bootAnimationDisplayed = true;
@@ -80,11 +80,11 @@ const PopupLayout: FC<PopupLayoutProps> = ({ className, children }) => {
           >
             {isUnlocked ? (
               <div className={classNames("pt-2 px-3 pb-8", "relative")}>
-                <img
+                {/* <img
                   src={PopupBgImage}
                   alt="Wigwam"
                   className="absolute inset-0 w-full h-full object-cover"
-                />
+                /> */}
                 <div className="mb-2 flex items-center justify-between gap-3 relative z-10">
                   <InteractionWithDapp />
                   <ProfileButton
