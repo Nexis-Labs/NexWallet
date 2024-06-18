@@ -4,7 +4,7 @@
 
 A browser extension Web3 wallet designed for Ethereum, Polygon, BNB Smart Chain, Arbitrum, and all EVM networks. Reliable and secure solution for managing accounts and crypto keys, exploring DeFi, NFTs, and GameFi.
 
-![NexWallet](./docs/banner.png)
+![NexWallet](./src/app/icons/nexis-logo.svg)
 
 **Table of Contents**
 
