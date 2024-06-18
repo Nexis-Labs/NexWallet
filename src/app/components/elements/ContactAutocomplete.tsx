@@ -38,12 +38,13 @@ type ContactAutocompleteProps = {
   meta: FieldMetaState<any>;
   setValue: (address: string) => void;
   injected?: boolean;
+  isNativeTx?:boolean;
 } & AddressFieldProps;
 
 const ContactAutocomplete = forwardRef<
   HTMLTextAreaElement,
   ContactAutocompleteProps
->(({ setValue, meta, value, injected = false, ...rest }, ref) => {
+>(({ setValue, meta, value, injected = false,isNativeTx=false, ...rest }, ref) => {
   const { contacts, loadMore, hasMore } = useContacts({
     search: (value as string) ?? undefined,
     limit: 20,
@@ -203,6 +204,7 @@ const ContactAutocomplete = forwardRef<
             setFromClipboard={setValue}
             error={opened ? undefined : rest.error}
             labelActions={!injected ? labelAction : pasteButton}
+            isNativeTx={isNativeTx}
           />
         ) : value ? (
           <div>

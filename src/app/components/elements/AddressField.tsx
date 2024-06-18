@@ -13,6 +13,7 @@ export type AddressFieldProps = LongTextFieldProps & {
   setFromClipboard?: (value: string) => void;
   hideLabel?: boolean;
   labelClassName?: string;
+  isNativeTx?:boolean;
 };
 
 const AddressField = forwardRef<HTMLTextAreaElement, AddressFieldProps>(
@@ -23,6 +24,7 @@ const AddressField = forwardRef<HTMLTextAreaElement, AddressFieldProps>(
       className,
       hideLabel,
       labelClassName,
+      isNativeTx,
       ...rest
     },
     ref,
@@ -36,7 +38,7 @@ const AddressField = forwardRef<HTMLTextAreaElement, AddressFieldProps>(
       <LongTextField
         ref={ref}
         label={!hideLabel ? label : undefined}
-        placeholder="0x0000000000000000000000000000000000000000"
+        placeholder={isNativeTx?"Agw3GE5zZVCWk5RYTm1aGSpuitiiCF3zXLS3gazybZMK":"0x0000000000000000000000000000000000000000"}
         textareaClassName="!h-20"
         labelClassName={labelClassName}
         maxLength={42}

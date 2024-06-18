@@ -66,7 +66,7 @@ const useSidebarLinks = () => {
       },
       {
         route: Page.Swap,
-        label: "Swap",
+        label: "Bridge",
         Icon: SwapIcon,
         badge: +swapBadgeAmount,
         action: () =>

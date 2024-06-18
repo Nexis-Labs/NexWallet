@@ -64,7 +64,11 @@ import { ReactComponent as SendIcon } from "app/icons/send-small.svg";
 import { ReactComponent as WarningIcon } from "app/icons/circle-warning.svg";
 import { ReactComponent as ExternalLinkIcon } from "app/icons/external-link.svg";
 
-const TransferToken: FC<{ tokenType: TokenType }> = ({ tokenType }) => {
+interface Props{
+  tokenType: TokenType;
+  isNativeTx?:boolean;
+}
+const TransferToken: FC<Props> = ({ tokenType ,isNativeTx}) => {
   const chainId = useChainId();
   const { currentAccount } = useAccounts();
 
@@ -100,6 +104,8 @@ const TransferToken: FC<{ tokenType: TokenType }> = ({ tokenType }) => {
       tokenType={tokenType}
       tokenSlug={tokenSlug}
       token={token}
+      isNativeTx={isNativeTx}
+      
     />
   ) : (
     <Redirect
@@ -120,10 +126,11 @@ type TransferTokenContent = {
   tokenType: TokenType;
   tokenSlug: string;
   token?: AccountToken;
+  isNativeTx?:boolean;
 };
 
 const TransferTokenContent = memo<TransferTokenContent>(
-  ({ tokenType, tokenSlug, token }) => {
+  ({ tokenType, tokenSlug, token,isNativeTx }) => {
     const { currentAccount } = useAccounts();
     const chainId = useChainId();
     const currentNetwork = useLazyNetwork();
@@ -599,7 +606,7 @@ const TransferTokenContent = memo<TransferTokenContent>(
             />
             <Field
               name="recipient"
-              validate={composeValidators(required, validateAddress)}
+              validate={isNativeTx?undefined:composeValidators(required, validateAddress)}
             >
               {({ input, focus, meta }) => (
                 <ContactAutocomplete
@@ -611,6 +618,7 @@ const TransferTokenContent = memo<TransferTokenContent>(
                   errorMessage={meta.error}
                   meta={meta}
                   className="mt-5"
+                  isNativeTx={isNativeTx}
                   {...input}
                 />
               )}
