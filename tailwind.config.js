@@ -14,8 +14,8 @@ module.exports = {
       colors: {
         brand: {
           darkaccent: "#0D1311",
-          darkbg: "#181A1F", // #13191F
-          lightgray: "#E4E4E4",
+          darkbg: "#121212", // #13191F
+          lightgray: "#121212",
           redone: "#3072f8",
           redtwo: "#0E1314",
           dark: "#181A1F",
@@ -26,8 +26,8 @@ module.exports = {
           inactivelight: "#BFC8CA",
           font: "#BCC3C4",
           inactivedark: "#8D9C9E",
-          gray: "#AAB0B1",
-          darkgray: "#22262A",
+          gray: "#121212",
+          darkgray: "#121212",
           placeholder: "#717A7B",
           disabledbackground: "#343434",
           disabledcolor: "#606668",
