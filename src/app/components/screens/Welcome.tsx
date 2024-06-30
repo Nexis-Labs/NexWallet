@@ -6,7 +6,9 @@ import { addAccountModalAtom, profileStateAtom } from "app/atoms";
 
 import BoardingPageLayout from "app/components/layouts/BoardingPageLayout";
 import Button from "app/components/elements/Button";
-import { ReactComponent as WigwamIcon } from "app/icons/nexis.svg";
+import { ReactComponent as WigwamIcon } from "app/icons/nexis-logo.svg";
+import { DotBackgroundDemo } from "../ui/dotBg";
+import AddAccountHeader from "../blocks/AddAccountHeader";
 
 const Welcome: FC = () => {
   const { all } = useAtomValue(profileStateAtom);
@@ -35,34 +37,39 @@ const Welcome: FC = () => {
   }, []);
 
   return (
-    <BoardingPageLayout header={!isInitial} isWelcome>
-      <div
-        className={classNames(
-          "flex flex-col items-center -mt-[3vh] relative z-10",
-          addAccOpened
-            ? "opacity-0"
-            : "opacity-100 transition-opacity duration-500",
-        )}
-      >
-        <WigwamIcon className={classNames("w-[5rem] h-auto mb-5")} />
-        <h1
-          className={classNames(
-            "mb-16 text-5xl mmd:text-4xl font-bold text-brand-light",
-          )}
-        >
-          Welcome to NexWallet
-        </h1>
+    <DotBackgroundDemo
+      child={
+        <BoardingPageLayout header={!isInitial} isWelcome>
+          <div
+            className={classNames(
+              "flex flex-col items-center -mt-[3vh] relative z-10",
+              addAccOpened
+                ? "opacity-0"
+                : "opacity-100 transition-opacity duration-500",
+            )}
+          >
+            <div className="flex items-center justify-center">
+              <WigwamIcon className={classNames("w-[5rem] h-auto mb-5")} />
+              <AddAccountHeader
+                className="mb-12"
+                description={"Join the future of finance with NexWallet"}
+              >
+                Welcome to Nexis Wallet
+              </AddAccountHeader>
+            </div>
 
-        <Button
-          theme="primary-reverse"
-          to={{ addAccOpened: true }}
-          merge
-          className="w-[14rem]"
-        >
-          {isInitial ? "Get started" : "Add wallet"}
-        </Button>
-      </div>
-    </BoardingPageLayout>
+            <Button
+              theme="primary-reverse"
+              to={{ addAccOpened: true }}
+              merge
+              className="w-[14rem]"
+            >
+              {isInitial ? "Get started" : "Add wallet"}
+            </Button>
+          </div>
+        </BoardingPageLayout>
+      }
+    />
   );
 };
 

@@ -125,7 +125,7 @@ const AddAccountModal = memo(() => {
     <Dialog.Root open={accModalOpened} onOpenChange={handleOpenChange} modal>
       <Dialog.Portal>
         <Dialog.Overlay
-          className={classNames("fixed inset-0 z-20", "bg-brand-darkblue/50")}
+          className={classNames("fixed inset-0 z-20", "bg-black")}
         />
         <Dialog.Content
           onOpenAutoFocus={(e) => e.preventDefault()}
@@ -144,7 +144,7 @@ const AddAccountModal = memo(() => {
             className={classNames(
               "w-36 h-auto",
               "absolute",
-              "top-0 left-1/2",
+              "top-10 left-1/2",
               "-translate-x-1/2 -translate-y-1/4",
               "z-30",
             )}

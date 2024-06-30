@@ -16,9 +16,6 @@ import { ReactComponent as CreateIcon } from "app/icons/addaccount-create.svg";
 import { ReactComponent as ImportIcon } from "app/icons/addaccount-import.svg";
 import { ReactComponent as LedgerIcon } from "app/icons/addaccount-ledger.svg";
 import { ReactComponent as ChevronRightIcon } from "app/icons/chevron-right.svg";
-import { ReactComponent as SuccessGreen } from "app/icons/success-green.svg";
-import drumGameLogoUrl from "app/images/drum-game.png";
-
 import ConfirmAccounts from "./ConfirmAccounts";
 import LedgerScanModal from "./shared/LedgerScanModal";
 
@@ -77,20 +74,6 @@ const ChooseAddAccountWay = memo<{ onLedgerOpened?: () => void }>(
           },
           "divider",
           {
-            title: existingApplication
-              ? "Drum Game target completed"
-              : "Complete Drum Game target",
-            description: existingApplication
-              ? `You added Telegram username: @${existingApplication.username} and finished game task`
-              : "Add your Telegram @username to finish game task",
-            promotional: existingApplication ? "completed" : true,
-            image: drumGameLogoUrl,
-            action: () => {
-              navigateToStep(AddAccountStep.DrumGameTarget);
-            },
-          },
-          "divider",
-          {
             title: "Import or recover wallet",
             description: "Using your own secret phrase or private key",
             Icon: ImportIcon,
@@ -116,7 +99,7 @@ const ChooseAddAccountWay = memo<{ onLedgerOpened?: () => void }>(
         <AddAccountHeader
           className="mb-12"
           description={
-            isInitialWallet ? "Join the future of finance with Wigwam" : null
+            isInitialWallet ? "Join the future of finance with NexWallet" : null
           }
         >
           {isInitialWallet ? "Let’s start your journey" : "Add more wallets"}
@@ -139,7 +122,6 @@ const ChooseAddAccountWay = memo<{ onLedgerOpened?: () => void }>(
 
             const { title, description, action } = item;
             const Icon = "Icon" in item && item.Icon ? item.Icon : null;
-            const image = "image" in item && item.image ? item.image : null;
             const promotional =
               "promotional" in item && item.promotional
                 ? item.promotional
@@ -171,22 +153,6 @@ const ChooseAddAccountWay = memo<{ onLedgerOpened?: () => void }>(
                       "h-auto mx-1",
                     )}
                   />
-                ) : null}
-                {image ? (
-                  <span className="relative w-[2.75rem] h-[2.75rem] my-auto mx-1 flex justify-center items-center">
-                    {promotional === "completed" ? (
-                      <SuccessGreen className="w-[1.75rem] h-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-[#ffffff] z-[1]" />
-                    ) : null}
-                    <img
-                      src={image}
-                      alt="Drum Game"
-                      className={classNames(
-                        "w-[2.75rem] min-w-[2.75rem] h-[2.75rem]",
-                        "my-auto mx-1",
-                        promotional === "completed" ? "opacity-50" : "",
-                      )}
-                    />
-                  </span>
                 ) : null}
 
                 <div

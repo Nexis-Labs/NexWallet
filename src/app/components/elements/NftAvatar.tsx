@@ -11,7 +11,7 @@ const NftAvatar = forwardRef<HTMLElement, AvatarProps>(
     <Avatar
       ref={ref}
       FallbackElement={MediaFallbackIcon}
-      className={classNames("!bg-brand-darkblue/50", className)}
+      className={classNames("!bg-black", className)}
       errorClassName={classNames(
         "aspect-square !border-brand-main/10",
         errorClassName,

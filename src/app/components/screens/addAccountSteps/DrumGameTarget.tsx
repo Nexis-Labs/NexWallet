@@ -14,7 +14,6 @@ import {
   required,
 } from "app/utils";
 import { useDialog } from "app/hooks/dialog";
-import AddAccountHeader from "app/components/blocks/AddAccountHeader";
 import Button from "app/components/elements/Button";
 import Input from "app/components/elements/Input";
 import WalletAvatar from "app/components/elements/WalletAvatar";
@@ -86,12 +85,12 @@ const DrumGameTarget = memo(() => {
         className={classNames("w-[10rem] h-[10rem]", "mx-auto mb-2")}
       />
 
-      <AddAccountHeader
+      {/* <AddAccountHeader
         className="mb-12"
         description="To participate in our telegram promotional activities you should register your telegram handle here."
       >
         Complete Drum Game target
-      </AddAccountHeader>
+      </AddAccountHeader> */}
 
       <div className={classNames("w-full mx-auto max-w-[24rem] min-w-0")}>
         {existingApplication ? (

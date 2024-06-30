@@ -175,6 +175,7 @@ const ActivityAsset = memo(
     }, [item]);
 
     return (
+      // <TracingBeam children={
       <div
         ref={ref}
         className={classNames(
@@ -343,6 +344,7 @@ const ActivityAsset = memo(
           </>
         )}
       </div>
+      // } />
     );
   }),
 );

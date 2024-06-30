@@ -36,7 +36,7 @@ const ActivityModal = memo(() => {
     <Dialog.Root open={activityOpened} onOpenChange={handleOpenChange} modal>
       <Dialog.Portal>
         <Dialog.Overlay
-          className={classNames("fixed inset-0 z-20", "bg-brand-darkblue/50")}
+          className={classNames("fixed inset-0 z-20", "bg-black")}
         />
         <Dialog.Content
           onOpenAutoFocus={(e) => e.preventDefault()}

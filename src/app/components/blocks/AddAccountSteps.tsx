@@ -23,6 +23,7 @@ import EditAccounts from "../screens/addAccountSteps/EditAccounts";
 import SetupPassword from "../screens/addAccountSteps/SetupPassword";
 import DrumGameTarget from "../screens/addAccountSteps/DrumGameTarget";
 import Button from "../elements/Button";
+import { DotBackgroundDemo } from "../ui/dotBg";
 
 const ADD_ACCOUNT_STEPS: AllSteps<AddAccountStep> = [
   [AddAccountStep.AddAccountInitial, () => <AddAccountInitial />],
@@ -50,35 +51,39 @@ const AddAccountStepsNext = memo(() => {
   }, [alert]);
 
   return (
-    <div
-      ref={rootRef}
-      className={classNames(
-        "w-[59rem] mx-auto",
-        "h-full",
-        "py-24 mmd:pt-20 mmd:pb-[3rem]",
-        "flex flex-col",
-        accountStep === AddAccountStep.AddAccountInitial ||
-          accountStep === AddAccountStep.DrumGameTarget
-          ? "w-full px-3"
-          : "",
-      )}
-    >
-      <StepsProvider
-        rootRef={rootRef}
-        atom={addAccountStepAtom}
-        steps={ADD_ACCOUNT_STEPS}
-      >
-        {({ children }) => <Suspense fallback={null}>{children}</Suspense>}
-      </StepsProvider>
-      <Button
-        theme="clean"
-        className="absolute right-8 bottom-5 z-20 font-semibold hidden sm:block"
-        onClick={handleSupport}
-      >
-        <SupportIcon className="mr-2" />
-        Support
-      </Button>
-    </div>
+    <DotBackgroundDemo
+      child={
+        <div
+          ref={rootRef}
+          className={classNames(
+            "w-[59rem] mx-auto",
+            "h-full",
+            "py-24 mmd:pt-20 mmd:pb-[3rem]",
+            "flex flex-col",
+            accountStep === AddAccountStep.AddAccountInitial ||
+              accountStep === AddAccountStep.DrumGameTarget
+              ? "w-full px-3"
+              : "",
+          )}
+        >
+          <StepsProvider
+            rootRef={rootRef}
+            atom={addAccountStepAtom}
+            steps={ADD_ACCOUNT_STEPS}
+          >
+            {({ children }) => <Suspense fallback={null}>{children}</Suspense>}
+          </StepsProvider>
+          <Button
+            theme="clean"
+            className="absolute right-8 bottom-5 z-20 font-semibold hidden sm:block"
+            onClick={handleSupport}
+          >
+            <SupportIcon className="mr-2" />
+            Support
+          </Button>
+        </div>
+      }
+    />
   );
 });
 
