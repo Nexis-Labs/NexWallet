@@ -38,6 +38,7 @@ import { useLazyAtomValue } from "lib/atom-utils";
 import ProfileButton from "../elements/ProfileButton";
 // import PopupBgImage from "app/images/popup-bg.svg"; //stefan replace this image
 import RoundedButton from "../elements/RoundedButton";
+import { EvervaultCard } from "./HoverEffect";
 
 let bootAnimationDisplayed = true;
 const handleBootAnimationEnd = () => {
@@ -247,15 +248,21 @@ const WalletInfo: FC = () => {
   const { address } = currentAccount;
   return (
     <section className="flex flex-col justify-center items-center relative z-10">
-      <AddressButton address={address} />
+      <EvervaultCard
+        child={
+          <div className="flex flex-col justify-center items-center">
+            <AddressButton address={address} />
 
-      <FiatAmount
-        amount={totalBalance ?? "0"}
-        copiable
-        className={classNames(
-          "mt-3 mb-5 text-[2rem] tracking-wide font-bold leading-none",
-          !totalBalance && "invisible",
-        )}
+            <FiatAmount
+              amount={totalBalance ?? "0"}
+              copiable
+              className={classNames(
+                "mt-3 mb-5 text-[2rem] tracking-wide font-bold leading-none",
+                !totalBalance && "invisible",
+              )}
+            />
+          </div>
+        }
       />
 
       <div className="flex gap-8">

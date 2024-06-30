@@ -6,7 +6,7 @@ import { Redirect } from "lib/navigation";
 import { Page, TransferTab as TransferTabEnum } from "app/nav";
 import { transferTabAtom } from "app/atoms";
 
-import Asset,{TransferNativeAsset} from "../transferTabs/Asset";
+import Asset, { TransferNativeAsset } from "../transferTabs/Asset";
 import Nft from "../transferTabs/Nft";
 
 function matchTransferTab(transferTab: TransferTabEnum) {
@@ -51,7 +51,11 @@ export const TransferNativeTab: FC = () => {
   const transferNativeTab = useAtomValue(transferTabAtom);
 
   return useMemo(
-    () => <Suspense fallback={null}>{matchTransferNativeTab(transferNativeTab)}</Suspense>,
+    () => (
+      <Suspense fallback={null}>
+        {matchTransferNativeTab(transferNativeTab)}
+      </Suspense>
+    ),
     [transferNativeTab],
   );
 };

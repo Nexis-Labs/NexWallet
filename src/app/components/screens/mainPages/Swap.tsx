@@ -9,7 +9,7 @@ import NetworksList from "app/components/blocks/NetworksList";
 import SecondaryTabs from "app/components/blocks/SecondaryTabs";
 import { ReactComponent as AssetIcon } from "app/icons/transfer-asset.svg";
 
-import {TransferNativeTab} from "./Transfer.Tab";
+import { TransferNativeTab } from "./Transfer.Tab";
 
 const Swap: FC = () => {
   const activeTabRoute = useAtomValue(transferTabAtom);
@@ -25,16 +25,16 @@ const Swap: FC = () => {
       <div className="flex min-h-0 grow">
         <SecondaryTabs tabs={tabsContent} activeRoute={activeRoute} />
         <ScrollAreaContainer
-            className="box-content w-full px-6"
-            viewPortClassName="pb-5 pt-5"
-            scrollBarClassName="py-0 pt-5 pb-5"
-          >
-            <ToastOverflowProvider>
-              <div>
-                <TransferNativeTab />
-              </div>
-            </ToastOverflowProvider>
-          </ScrollAreaContainer>
+          className="box-content w-full px-6"
+          viewPortClassName="pb-5 pt-5"
+          scrollBarClassName="py-0 pt-5 pb-5"
+        >
+          <ToastOverflowProvider>
+            <div>
+              <TransferNativeTab />
+            </div>
+          </ToastOverflowProvider>
+        </ScrollAreaContainer>
       </div>
     </>
   );
