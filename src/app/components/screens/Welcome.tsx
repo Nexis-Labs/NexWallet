@@ -9,6 +9,7 @@ import Button from "app/components/elements/Button";
 import { ReactComponent as WigwamIcon } from "app/icons/nexis-logo.svg";
 import { DotBackgroundDemo } from "../ui/dotBg";
 import AddAccountHeader from "../blocks/AddAccountHeader";
+import { FlipWordsDemo } from "../ui/flipHeader";
 
 const Welcome: FC = () => {
   const { all } = useAtomValue(profileStateAtom);
@@ -48,14 +49,21 @@ const Welcome: FC = () => {
                 : "opacity-100 transition-opacity duration-500",
             )}
           >
-            <div className="flex items-center justify-center">
-              <WigwamIcon className={classNames("w-[5rem] h-auto mb-5")} />
+            <div className="flex flex-col items-center justify-center">
+              <WigwamIcon
+                className={classNames(
+                  "w-36 h-auto",
+                  "absolute",
+                  "top-10 left-1/2",
+                  "-translate-x-1/2 -translate-y-1/4",
+                  "z-30",
+                )}
+              />
+              <FlipWordsDemo />
               <AddAccountHeader
                 className="mb-12"
                 description={"Join the future of finance with NexWallet"}
-              >
-                Welcome to Nexis Wallet
-              </AddAccountHeader>
+              ></AddAccountHeader>
             </div>
 
             <Button
