@@ -7,9 +7,11 @@ import { cn } from "../../../utils/cn";
 export const EvervaultCard = ({
   className,
   child,
+  isHoverNeeded,
 }: {
   className?: string;
   child?: any;
+  isHoverNeeded?: boolean;
 }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -48,8 +50,13 @@ export const EvervaultCard = ({
         />
         <div className="relative z-10 flex items-center justify-center">
           <div className="relative h-44 w-44  rounded-full flex items-center justify-center text-white font-bold text-4xl">
-            <div className="absolute w-full h-full hover:bg-white/[0.8] hover:dark:bg-black/[0.8] blur-sm rounded-full" />
-            <span className="dark:text-white text-black z-20 hover:bg-black/[0.8] rounded-full w-full h-full flex flex-col justify-center  items-center">
+            <span
+              className={
+                isHoverNeeded
+                  ? "dark:text-white text-black z-20 hover:bg-black/[0.8] rounded-full w-full h-full flex flex-col justify-center  items-center"
+                  : ""
+              }
+            >
               {child}
             </span>
           </div>

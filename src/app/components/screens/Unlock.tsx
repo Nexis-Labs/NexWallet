@@ -13,6 +13,7 @@ import BoardingPageLayout from "../layouts/BoardingPageLayout";
 import PopupLayout from "../layouts/PopupLayout";
 import ProfilePreview from "../blocks/ProfilePreview";
 import PasswordForm from "../blocks/PasswordForm";
+import { EvervaultCard } from "../layouts/HoverEffect";
 
 type UnlockProps = {
   isApproval?: boolean;
@@ -38,11 +39,15 @@ const Unlock: FC<UnlockProps> = ({ isApproval }) => {
               )}
             />
           )}
-
-          <ProfilePreview
-            theme={isPopup ? "extrasmall" : "large"}
-            profile={currentProfile}
-            className={classNames(isPopup ? "w-[8.25rem]" : "w-[16rem]")}
+          <EvervaultCard
+            child={
+              <ProfilePreview
+                theme={isPopup ? "extrasmall" : "large"}
+                profile={currentProfile}
+                className={classNames(isPopup ? "w-[8.25rem]" : "w-[16rem]")}
+              />
+            }
+            isHoverNeeded={false}
           />
         </div>
       </div>
