@@ -15,7 +15,7 @@ module.exports = {
         brand: {
           darkaccent: "#0D1311",
           darkbg: "black", // #13191F
-          lightgray: "#121212",
+          lightgray: "white",
           redone: "#3072f8",
           redtwo: "#0E1314",
           dark: "#181A1F",
