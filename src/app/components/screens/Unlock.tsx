@@ -26,7 +26,7 @@ const Unlock: FC<UnlockProps> = ({ isApproval }) => {
 
   const content = (
     <>
-      <div className={classNames("flex justify-center", isPopup && "mt-12")}>
+      <div className={classNames("flex justify-center", isPopup && "mt-8")}>
         <div className="relative">
           {!isApproval && (
             <ChangeProfileButton
@@ -54,7 +54,7 @@ const Unlock: FC<UnlockProps> = ({ isApproval }) => {
       </div>
       <PasswordForm
         theme={isPopup ? "small" : "large"}
-        className={isPopup ? "mt-11" : "mt-12 mb-20"}
+        className={isPopup ? "mt-11" : "mt-12"}
         attentionModal={!isApproval}
         autoFocus
       />
