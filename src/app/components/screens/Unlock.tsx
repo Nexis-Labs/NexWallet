@@ -40,6 +40,7 @@ const Unlock: FC<UnlockProps> = ({ isApproval }) => {
             />
           )}
           <EvervaultCard
+            alwaysDisplayOn={true}
             child={
               <ProfilePreview
                 theme={isPopup ? "extrasmall" : "large"}
