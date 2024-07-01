@@ -14,7 +14,7 @@ module.exports = {
       colors: {
         brand: {
           darkaccent: "#0D1311",
-          darkbg: "#121212", // #13191F
+          darkbg: "black", // #13191F
           lightgray: "#121212",
           redone: "#3072f8",
           redtwo: "#0E1314",
@@ -41,6 +41,7 @@ module.exports = {
         sans: ["InterVariable", ...theme.fontFamily.sans],
       },
       animation: {
+        shimmer: "shimmer 2s linear infinite",
         bootfadein: "fadein 0.15s ease-in",
         bootfadeinslow: "fadein 0.3s ease-in",
         bootfadeinfast: "fadein 0.1s ease-in",
@@ -72,6 +73,14 @@ module.exports = {
           to: {
             opacity: "1",
             transform: "translate(-50%, -50%) scale(1)",
+          },
+        },
+        shimmer: {
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
           },
         },
         barclimb: {
