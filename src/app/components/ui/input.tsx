@@ -10,8 +10,9 @@ export interface InputProps
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ type, actions, ...props }, ref) => {
+  ({ className, type, actions, ...props }, ref) => {
     const radius = 100;
+    console.log(className);
     const [visible, setVisible] = React.useState(false);
 
     const mouseX = useMotionValue(0);
