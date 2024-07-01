@@ -249,6 +249,7 @@ const WalletInfo: FC = () => {
   return (
     <section className="flex flex-col justify-center items-center relative z-10">
       <EvervaultCard
+        isHoverNeeded={true}
         child={
           <div className="flex flex-col justify-center items-center">
             <AddressButton address={address} />
