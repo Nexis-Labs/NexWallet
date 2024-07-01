@@ -149,6 +149,7 @@ module.exports = {
         approvestack: "0px -1px 1px #3C435F",
         "popup-bg": "0px -10px 24px 0px rgba(17, 18, 22, 0.24)",
         "popup-nav": "0px -10px 24px 0px rgba(17, 18, 22, 0.48);",
+        input: `0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`,
       },
       dropShadow: {
         profileinitial: "0px 2px 5px rgba(112, 113, 129, 0.37)",

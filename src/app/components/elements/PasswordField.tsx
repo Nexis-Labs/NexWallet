@@ -1,9 +1,10 @@
 import { forwardRef, useState } from "react";
 
-import Input, { InputProps } from "./Input";
+import { InputProps } from "./Input";
 import IconedButton from "./IconedButton";
 import { ReactComponent as EyeIcon } from "app/icons/eye.svg";
 import { ReactComponent as OpenedEyeIcon } from "app/icons/opened-eye.svg";
+import { Input } from "../ui/input";
 
 const PasswordField = forwardRef<
   HTMLInputElement,
