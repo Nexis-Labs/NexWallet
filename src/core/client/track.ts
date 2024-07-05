@@ -17,6 +17,7 @@ export enum TEvent {
   DappSigning = "DAPP_SIGNING_OPENED",
   DappTransaction = "DAPP_TRANSACTION_OPENED",
   SwapNavigated = "SWAP_NAVIGATED",
+  FaucetNavigated = "FAUCET_NAVIGATED",
   SwapStarted = "SWAP_STARTED",
   SwapFinished = "SWAP_FINISHED",
   BuyNavigated = "BUY_NAVIGATED",

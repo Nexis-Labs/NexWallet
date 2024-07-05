@@ -7,6 +7,7 @@ export enum Page {
   Buy = "buy",
   Transfer = "transfer",
   Swap = "swap",
+  Faucet = "faucet",
   Apps = "apps",
   Contacts = "contacts",
   Wallets = "wallets",

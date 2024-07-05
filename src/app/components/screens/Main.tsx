@@ -17,6 +17,7 @@ import Settings from "./mainPages/Settings";
 import Rewards from "./mainPages/Rewards";
 // import OnboardingPopup from "../blocks/OnboardingPopup";
 import Buy from "./mainPages/Buy";
+import Faucet from "./mainPages/Faucet";
 
 const SwapDynamic = lazy(() => import("./mainPages/Swap"));
 
@@ -51,5 +52,6 @@ function matchMainPage(page: Page) {
     .with(Page.Wallets, () => <Wallets />)
     .with(Page.Settings, () => <Settings />)
     .with(Page.Rewards, () => <Rewards />)
+    .with(Page.Faucet, () => <Faucet />)
     .otherwise(() => <Redirect to={{ page: Page.Default }} />);
 }
