@@ -18,6 +18,7 @@ const NetworkIcon: FC<NetworkIconProps> = ({ network, ...rest }) => {
   const srcs = useMemo(() => {
     if ("type" in network) {
       const icon = getNetworkIconUrl(network);
+      console.log("network===", icon);
       return icon ? [icon] : [];
     }
 

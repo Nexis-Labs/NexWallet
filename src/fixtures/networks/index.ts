@@ -112,6 +112,7 @@ export const NETWORK_ICON_MAP = new Map<number, string>(
 );
 
 export function getNetworkIconUrl(network: Network) {
+  console.log(NETWORK_ICON_MAP);
   return NETWORK_ICON_MAP.get(network.chainId) ?? network.iconUrls?.[0];
 }
 

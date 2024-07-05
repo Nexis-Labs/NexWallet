@@ -8,7 +8,7 @@ import { isPopup } from "lib/ext/view";
 
 import { activityModalAtom } from "app/atoms";
 import { OverflowProvider } from "app/hooks";
-import { ReactComponent as ActivityIcon } from "app/icons/ActivityIcon.svg";
+import { ReactComponent as ActivityIcon } from "app/icons/nexis.svg";
 import { ReactComponent as CloseIcon } from "app/icons/close.svg";
 
 import Button from "../../elements/Button";
