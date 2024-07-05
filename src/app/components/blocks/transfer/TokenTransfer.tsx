@@ -63,6 +63,8 @@ import ContactAutocomplete from "app/components/elements/ContactAutocomplete";
 import { ReactComponent as SendIcon } from "app/icons/send-small.svg";
 import { ReactComponent as WarningIcon } from "app/icons/circle-warning.svg";
 import { ReactComponent as ExternalLinkIcon } from "app/icons/external-link.svg";
+import bs58 from "bs58";
+import { hexlify } from "@ethersproject/bytes";
 
 interface Props {
   tokenType: TokenType;
@@ -140,7 +142,6 @@ const TransferTokenContent = memo<TransferTokenContent>(
     const isMounted = useIsMounted();
 
     const provider = useProvider();
-    const signerProvider = provider.getVoidSigner(currentAccount.address);
 
     useSync(chainId, currentAccount.address, tokenType);
 
@@ -148,6 +149,29 @@ const TransferTokenContent = memo<TransferTokenContent>(
       async ({ recipient, amount }: FormValues) =>
         withHumanDelay(async () => {
           if (!token) {
+            return;
+          }
+          if (isNativeTx) {
+            const contractAddress =
+              "0x56454c41532D434841494e000000000053574150";
+            const abi = [
+              "function transferToNative(bytes32 native_recipient) external payable",
+            ];
+            console.log("currentAccount.address===", currentAccount.address);
+            const signerProvider = await provider.getSigner();
+            const contract: any = new ethers.Contract(
+              contractAddress,
+              abi,
+              signerProvider,
+            );
+
+            const nativeRecipientBytes = bs58.decode(recipient);
+            const nativeRecipientBytes32 = hexlify(nativeRecipientBytes);
+            const value = ethers.parseEther(amount);
+            const tx = await contract.transferToNative(nativeRecipientBytes32, {
+              value: value,
+            });
+            console.log(tx);
             return;
           }
 
@@ -246,7 +270,9 @@ const TransferTokenContent = memo<TransferTokenContent>(
               }
             }
 
-            const gasLimit = await signerProvider.estimateGas(txParams);
+            const gasLimit = await (
+              await provider.getSigner()
+            ).estimateGas(txParams);
 
             const rpcTx = provider.getRpcTransaction({
               ...txParams,
@@ -342,7 +368,6 @@ const TransferTokenContent = memo<TransferTokenContent>(
         currentAccount.address,
         alert,
         closeCurrentDialog,
-        signerProvider,
         currentNetwork,
         updateToast,
         provider,

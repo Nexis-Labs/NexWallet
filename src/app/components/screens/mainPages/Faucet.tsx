@@ -10,8 +10,9 @@ function Faucet() {
   const { alert } = useDialog();
 
   const onSubmit = (values: any) => {
+    console.log(values);
     axios
-      .post("https://evm-faucet-devnet.nexscan.io/api", values.username)
+      .post("https://evm-faucet-devnet.nexscan.io/api", values.address)
       .then((response) => {
         alert({
           title: "Success!",

@@ -45,7 +45,6 @@ const AddressField = forwardRef<HTMLTextAreaElement, AddressFieldProps>(
         }
         textareaClassName="!h-20"
         labelClassName={labelClassName}
-        maxLength={42}
         actions={
           <Button
             theme="tertiary"
