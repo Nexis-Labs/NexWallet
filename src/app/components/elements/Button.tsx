@@ -138,7 +138,7 @@ const Button = forwardRef<HTMLElement, ButtonProps>(
         "text-brand-light",
       "text-base font-bold",
       theme === "primary" &&
-        "inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-transparent bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black relative overflow-hidden before:absolute before:inset-0 before:rounded-md before:border-2 before:border-transparent before:bg-[radial-gradient(75%_100%_at_50%_0%,rgba(0,255,123,0.6)_0%,rgba(0,255,123,0)_75%)] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500 mt-4",
+        "inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-transparent bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-black relative overflow-hidden before:absolute before:inset-0 before:rounded-md before:border-2 before:border-transparent before:transition-all before:duration-500 before:transform before:scale-0 hover:before:scale-100",
       theme === "primary-reverse" &&
         "bg-brand-redone text-brand-darkaccent bg-opacity shadow-buttonaccent",
       theme === "secondary" && "bg-brand-main bg-opacity-10",
