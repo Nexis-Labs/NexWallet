@@ -9,7 +9,7 @@ export const ChainCard = styled(Card)({
   height: 48,
   borderRadius: 8,
   border: 'none',
-  background: '#22262A',
+  background: '#131313',
 });
 
 export const ChainContainer = styled(Box)(({ theme }) => ({

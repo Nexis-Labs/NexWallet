@@ -42,7 +42,7 @@ export const SlippageInput = () => {
           onChange={handleChange}
           onBlur={handleBlur}
           value={value}
-          sx={{background: '#22262A', borderRadius: '10px'}}
+          sx={{background: '#131313', borderRadius: '10px'}}
         />
       </FormControl>
     </Card>

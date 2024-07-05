@@ -85,6 +85,7 @@ import Tooltip from "../../elements/Tooltip";
 import TooltipIcon from "../../elements/TooltipIcon";
 import CircleSpinner from "../../elements/CircleSpinner";
 import NetworkIcon from "app/components/elements/NetworkIcon";
+import { HoverBorderGradient } from "app/components/ui/hover-border";
 
 type StatusType =
   | "pending"
@@ -180,7 +181,7 @@ const ActivityAsset = memo(
         ref={ref}
         className={classNames(
           "w-full",
-          "bg-[#22262A]",
+          "bg-[#131313]",
           "border",
           item.pending && "border-[#D99E2E]/50",
           (!status || status === "succeeded" || status === "revoked") &&
@@ -360,7 +361,6 @@ type DisconnectDAppProps = {
 const DisconnectDApp = memo<DisconnectDAppProps>(
   ({ item, className, setRevokedPermission }) => {
     const { currentAccount } = useAccounts();
-    const isPopupMode = isPopup();
     const origin = useMemo(() => getPageOrigin(item.source), [item.source]);
     const lazyPermission = useAtomValue(loadable(getPermissionAtom(origin)));
     const permission =
@@ -394,7 +394,7 @@ const DisconnectDApp = memo<DisconnectDAppProps>(
 
     return (
       <div className={classNames("flex items-center", className)}>
-        <button
+        {/* <button
           type="button"
           className={classNames(
             "border border-brand-main/20",
@@ -407,8 +407,18 @@ const DisconnectDApp = memo<DisconnectDAppProps>(
           )}
           onClick={handleDisconnect}
         >
-          Revoke permission
-        </button>
+          Revoke permission  d
+        </button> */}
+        <div className="ml-4">
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            as="button"
+            className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
+            onClick={handleDisconnect}
+          >
+            <span>Revoke permission</span>
+          </HoverBorderGradient>
+        </div>
       </div>
     );
   },

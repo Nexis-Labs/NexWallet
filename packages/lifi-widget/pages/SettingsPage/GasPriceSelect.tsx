@@ -22,7 +22,7 @@ export const GasPriceSelect = () => {
           }
           IconComponent={KeyboardArrowDownIcon}
           dense
-          sx={{background: '#22262A', borderRadius: '10px'}}
+          sx={{background: '#131313', borderRadius: '10px'}}
         >
           <MenuItem value="slow">{t(`settings.gasPrice.slow`)}</MenuItem>
           <MenuItem value="normal">{t(`settings.gasPrice.normal`)}</MenuItem>

@@ -139,7 +139,7 @@ export const TransactionDetailsPageExpanded: React.FC = () => {
           </div>
       </div>
       <Card sx={{
-          background: '#22262A',
+          background: '#131313',
           padding: '16px',
           border: 'none',
           marginTop: '14px'

@@ -74,6 +74,16 @@ const useSidebarLinks = () => {
             page: "dashboard",
           }),
       },
+      {
+        route: Page.Swap,
+        label: "Faucet",
+        Icon: SwapIcon,
+        badge: 0,
+        action: () =>
+          trackEvent(TEvent.SwapNavigated, {
+            page: "dashboard",
+          }),
+      },
       // {
       //   route: Page.Rewards,
       //   label: "Rewards",

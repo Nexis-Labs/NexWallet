@@ -89,7 +89,7 @@ export const TransactionActiveItem: React.FC<{
       <Card 
         onClick={handleClick}
         className={'withHover'}
-        sx={{borderRadius: '10px', background: '#22262A', border: `1px solid ${status === 4 ? 'rgb(234 85 106)' : '#ffcf26'}`}}>
+        sx={{borderRadius: '10px', background: '#131313', border: `1px solid ${status === 4 ? 'rgb(234 85 106)' : '#ffcf26'}`}}>
         <Box
           sx={{
             display: 'flex',

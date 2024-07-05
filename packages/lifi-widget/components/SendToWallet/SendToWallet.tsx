@@ -93,7 +93,7 @@ export const SendToWallet: React.FC<BoxProps> = forwardRef((props, ref) => {
         <CardTitle required={requiredToAddress} sx={{paddingTop: '0px', paddingLeft: '0px', fontSize: '16px'}}>
           Recipient
         </CardTitle>
-        <div style={{background: '#22262A', borderRadius: '10px', marginTop: '8px'}}>
+        <div style={{background: '#131313', borderRadius: '10px', marginTop: '8px'}}>
         <FormControl fullWidth sx={{padding: '6px 16px 6px 0px' }}>
           <Input
             size="small"

@@ -190,7 +190,7 @@ export const RouteCard: React.FC<
       selectionColor="secondary"
       indented
       className='withHover'
-      sx={{borderRadius: '10px', background: '#22262A', border: `1px solid ${active ? '#3072f859' : '#32393E'}`}}
+      sx={{borderRadius: '10px', background: '#131313', border: `1px solid ${active ? '#3072f859' : '#32393E'}`}}
       {...other}
     >
       {cardContent}

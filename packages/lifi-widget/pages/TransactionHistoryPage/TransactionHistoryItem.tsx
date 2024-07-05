@@ -71,7 +71,7 @@ export const TransactionHistoryItem: React.FC<{
       <Card 
         onClick={handleClick}
         className={'withHover'}
-        sx={{borderRadius: '10px', background: '#22262A', border: 'none'}}>
+        sx={{borderRadius: '10px', background: '#131313', border: 'none'}}>
         <Box
           sx={{
             display: 'flex',

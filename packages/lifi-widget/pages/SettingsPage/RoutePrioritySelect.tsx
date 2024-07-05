@@ -25,7 +25,7 @@ export const RoutePrioritySelect: React.FC = () => {
           }
           IconComponent={KeyboardArrowDownIcon}
           dense
-          sx={{background: '#22262A', borderRadius: '10px'}}
+          sx={{background: '#131313', borderRadius: '10px'}}
         >
           {Orders.map((order) => {
             const tag = t(`main.tags.${order.toLowerCase()}` as any);

@@ -66,7 +66,7 @@ export const SelectTokenButton: React.FC<
   return (
     <Card flex={1} onClick={onClick} sx={{border: 'none', background: 'none'}}>
       <CardTitle sx={{paddingLeft: '0px !important'}}>{cardTitle}</CardTitle>
-      <div className="selectTokenButton" style={{background: '#22262A', borderRadius: '10px', marginTop: '8px', position: 'relative'}}>
+      <div className="selectTokenButton" style={{background: '#131313', borderRadius: '10px', marginTop: '8px', position: 'relative'}}>
         {chainId && tokenAddress && (isChainLoading || isTokenLoading) ? (
           <SelectTokenCardHeader
             avatar={<Skeleton variant="circular" width={44} height={44} />}
