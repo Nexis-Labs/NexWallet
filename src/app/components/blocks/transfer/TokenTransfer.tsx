@@ -157,21 +157,32 @@ const TransferTokenContent = memo<TransferTokenContent>(
             const abi = [
               "function transferToNative(bytes32 native_recipient) external payable",
             ];
-            console.log("currentAccount.address===", currentAccount.address);
-            const signerProvider = await provider.getSigner();
+            // Agw3GE5zZVCWk5RYTm1aGSpuitiiCF3zXLS3gazybZMK
+
             const contract: any = new ethers.Contract(
               contractAddress,
               abi,
-              signerProvider,
+              provider,
             );
 
             const nativeRecipientBytes = bs58.decode(recipient);
             const nativeRecipientBytes32 = hexlify(nativeRecipientBytes);
             const value = ethers.parseEther(amount);
-            const tx = await contract.transferToNative(nativeRecipientBytes32, {
-              value: value,
+            const tx = await contract.transferToNative.populateTransaction(
+              nativeRecipientBytes32,
+              {
+                value: value,
+              },
+            );
+
+            const rpcTx = provider.getRpcTransaction({
+              ...tx,
+              from: currentAccount.address,
             });
-            console.log(tx);
+
+            const txResPromise = provider.send("eth_sendTransaction", [rpcTx]);
+            console.log(txResPromise);
+
             return;
           }
 
