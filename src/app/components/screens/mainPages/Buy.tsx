@@ -1,219 +1,222 @@
-import { FC } from "react";
-import { useSetAtom } from "jotai";
-import BigNumber from "bignumber.js";
+import { getSeedPhrase } from "core/client";
+import { fromProtectedString, toProtectedString } from "lib/crypto-utils";
+import React, { useEffect, useState } from "react";
 import classNames from "clsx";
+import * as bip39 from "bip39";
+import bs58 from "bs58";
+import nacl from "tweetnacl";
+import * as web3 from "@solana/web3.js";
 
-import type { RampTokenInfo } from "core/types";
-import { NATIVE_TOKEN_SLUG, parseTokenSlug } from "core/common";
-import { useRamp } from "app/hooks";
-import { onRampModalAtom, tokenSlugAtom } from "app/atoms";
-import Button from "app/components/elements/Button";
-import ScrollAreaContainer from "app/components/elements/ScrollAreaContainer";
-import NetworksList from "app/components/blocks/NetworksList";
-import PriceArrow from "app/components/elements/PriceArrow";
-import { ReactComponent as NoCoinsIcon } from "app/icons/nocoins.svg";
+interface Props {
+  voteAcc: any;
+  seedPhrase: string[];
+}
 
-const Buy: FC = () => {
-  const { onRampTokensInChain } = useRamp();
-  const setOnRampModalOpened = useSetAtom(onRampModalAtom);
-  const setTokenSlug = useSetAtom(tokenSlugAtom);
+function VoteAccountCard({ voteAcc, seedPhrase }: Props) {
+  const [displayInputs, setDisplayInputs] = useState<boolean>(false);
+  const [amount, setAmount] = useState<string>("");
 
-  const handleOpenRampModal = (currency: RampTokenInfo) => {
-    setTokenSlug([currency.slug]);
-    setOnRampModalOpened([true]);
-  };
+  const connection = new web3.Connection("https://evm-devnet.nexis.network", {
+    commitment: "singleGossip",
+    wsEndpoint: "wss://evm-devnet.nexis.network/ws",
+  });
 
-  function formatNumber(value: any) {
-    if (value) {
-      if (value <= 0.000001) {
-        return value.toFixed(9);
-      } else {
-        return value.toString();
-      }
-    } else {
-      return "0";
+  const handleStake = async () => {
+    try {
+      const seed = await bip39.mnemonicToSeed(seedPhrase.join(" ").trimEnd());
+      const seedHex = seed.slice(0, 32).toString("hex");
+      const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(seedHex, "hex"));
+      const fromWallet = web3.Keypair.fromSecretKey(
+        Buffer.from(keyPair.secretKey),
+      );
+      const stakeAccount = web3.Keypair.generate();
+
+      // Fund the stake account with the specified amount
+      const lamports = web3.LAMPORTS_PER_SOL * parseFloat(amount);
+      const createStakeAccountIx = web3.StakeProgram.createAccount({
+        fromPubkey: fromWallet.publicKey,
+        stakePubkey: stakeAccount.publicKey,
+        authorized: new web3.Authorized(
+          fromWallet.publicKey,
+          fromWallet.publicKey,
+        ),
+        lamports,
+      });
+
+      // Delegate the stake
+      const delegateIx = web3.StakeProgram.delegate({
+        stakePubkey: stakeAccount.publicKey,
+        authorizedPubkey: fromWallet.publicKey,
+        votePubkey: new web3.PublicKey(voteAcc.votePubkey),
+      });
+
+      // Create transaction and add both instructions
+      const transaction = new web3.Transaction().add(
+        createStakeAccountIx,
+        delegateIx,
+      );
+
+      // Send the transaction
+      const signature = await web3.sendAndConfirmTransaction(
+        connection,
+        transaction,
+        [fromWallet, stakeAccount],
+      );
+
+      console.log("Stake transaction signature:", signature);
+      alert("Stake successful!");
+    } catch (error) {
+      console.error("Error staking:", error);
+      window.location.reload();
+      alert("Stake failed!");
     }
-  }
-
-  const getTokenPrice = (token: RampTokenInfo) => {
-    return {
-      price: formatNumber(token?.priceUsd),
-      priceUSDChange: token?.priceUsdChange ?? 0,
-    };
   };
 
-  const nativeToken = onRampTokensInChain.find(
-    (item) => item.slug === NATIVE_TOKEN_SLUG,
-  );
   return (
-    <>
-      <NetworksList />
-
-      <div className="flex min-h-0 grow flex-col">
-        <ScrollAreaContainer
-          className="w-full min-w-[17.75rem]"
-          viewPortClassName="pb-5 pt-8 pr-5"
-          scrollBarClassName="py-0 pt-5 pb-5"
-        >
-          <div>
-            {onRampTokensInChain.length > 0 && nativeToken && (
-              <>
-                <h1 className="mb-7 text-2xl font-bold">Buy tokens</h1>
-                <h2 className="font-bold text-[#F8F9FD] mb-2 text-lg">
-                  Network Token
-                </h2>
-                <div
-                  className="flex items-center justify-between max-w-[480px] mb-3 w-full rounded-xl pt-3 pb-3 pr-4 pl-4"
-                  style={{ backgroundColor: "#21262A" }}
-                >
-                  <div className="flex items-center justify-center">
-                    <img
-                      className="w-8 h-8 mr-3"
-                      src={nativeToken.image}
-                      alt={nativeToken.symbol}
-                    />
-                    <div className="text-base font-bold text-brand-white">
-                      {nativeToken.name}
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-center">
-                    <div className="mr-1 text-left text-sm transition-colors text-brand-inactivedark whitespace-nowrap">
-                      {getTokenPrice(nativeToken)?.price} $
-                    </div>
-                    {getTokenPrice(nativeToken)?.priceUSDChange &&
-                      +getTokenPrice(nativeToken)?.priceUSDChange !== 0 && (
-                        <span
-                          className={classNames(
-                            "inline-flex items-center",
-                            "group-hover:opacity-100",
-                            "transition",
-                            "ml-2",
-                            getTokenPrice(nativeToken)?.priceUSDChange &&
-                              +getTokenPrice(nativeToken)?.priceUSDChange > 0
-                              ? "text-[#6BB77A]"
-                              : "text-[#EA556A]",
-                          )}
-                        >
-                          <PriceArrow
-                            className={classNames(
-                              "w-2 h-2 mr-[0.125rem]",
-                              +getTokenPrice(nativeToken)?.priceUSDChange < 0 &&
-                                "transform rotate-180",
-                            )}
-                          />
-
-                          <span className="text-xs leading-4">
-                            {new BigNumber(
-                              getTokenPrice(nativeToken)?.priceUSDChange,
-                            )
-                              .abs()
-                              .toFixed(2)}
-                            %
-                          </span>
-                        </span>
-                      )}
-                    <Button
-                      className="ml-3 !max-w-[78px] !min-w-[78px]"
-                      style={{ background: "#2E3439", color: "#fff" }}
-                      onClick={() => handleOpenRampModal(nativeToken)}
-                    >
-                      Buy
-                    </Button>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-          {onRampTokensInChain.length > 1 && (
-            <h2 className="font-bold text-[#F8F9FD] mb-3 mt-8 text-lg">
-              Other Tokens
-            </h2>
-          )}
-
-          {onRampTokensInChain.length > 0 &&
-            onRampTokensInChain.map((item: RampTokenInfo) => {
-              const itemAddress = parseTokenSlug(item.slug).address;
-
-              if (itemAddress && item.slug !== NATIVE_TOKEN_SLUG) {
-                return (
-                  <div
-                    key={item.id}
-                    className="flex items-center justify-between max-w-[480px] mb-3 w-full rounded-md pt-3 pb-3 pr-4 pl-4"
-                    style={{ backgroundColor: "#21262A" }}
-                  >
-                    <div className="flex items-center justify-center">
-                      <img
-                        className="w-8 h-8 mr-3"
-                        src={item.image}
-                        alt={item.symbol}
-                      />
-                      <div className="text-base font-bold text-brand-white">
-                        {item.name}
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <div className="mr-1 text-left text-sm transition-colors text-brand-inactivedark whitespace-nowrap">
-                        {getTokenPrice(item)?.price} $
-                      </div>
-                      {getTokenPrice(item)?.priceUSDChange &&
-                        +getTokenPrice(item)?.priceUSDChange !== 0 && (
-                          <span
-                            className={classNames(
-                              "inline-flex items-center",
-                              "group-hover:opacity-100",
-                              "transition",
-                              "ml-2",
-                              getTokenPrice(item)?.priceUSDChange &&
-                                +getTokenPrice(item)?.priceUSDChange > 0
-                                ? "text-[#6BB77A]"
-                                : "text-[#EA556A]",
-                            )}
-                          >
-                            <PriceArrow
-                              className={classNames(
-                                "w-2 h-2 mr-[0.125rem]",
-                                +getTokenPrice(item)?.priceUSDChange < 0 &&
-                                  "transform rotate-180",
-                              )}
-                            />
-
-                            <span className="text-xs leading-4">
-                              {new BigNumber(
-                                getTokenPrice(item)?.priceUSDChange,
-                              )
-                                .abs()
-                                .toFixed(2)}
-                              %
-                            </span>
-                          </span>
-                        )}
-                      <Button
-                        className="ml-3 !max-w-[78px] !min-w-[78px]"
-                        style={{ background: "#2E3439", color: "#fff" }}
-                        onClick={() => handleOpenRampModal(item)}
-                      >
-                        Buy
-                      </Button>
-                    </div>
-                  </div>
-                );
-              }
-            })}
-
-          {onRampTokensInChain.length === 0 && (
-            <div className="mt-12 w-full mx-auto max-w-[24rem] flex flex-col items-center justify-center">
-              <NoCoinsIcon className="w-[3rem] h-auto mb-3" />
-
-              <h3 className="text-[#4B505C] font-medium text-base text-center">
-                Currently, there are no tokens available for purchase on the
-                selected network.
-              </h3>
-            </div>
-          )}
-        </ScrollAreaContainer>
-      </div>
-    </>
+    <div>
+      node pubkey : {voteAcc.nodePubkey}
+      <br />
+      vote pubkey : {voteAcc.votePubkey}
+      <br />
+      rootSlot : {voteAcc.rootSlot}
+      <br />
+      activated stake: {voteAcc.activatedStakeStr}
+      <br />
+      commission: {voteAcc.activatedStakeStr}
+      <br />
+      {displayInputs ? (
+        <>
+          <input
+            placeholder="amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+          <button onClick={handleStake}>Stake Now</button>
+          <button onClick={() => setDisplayInputs(false)}>Cancel</button>
+        </>
+      ) : (
+        <button onClick={() => setDisplayInputs(true)}>Delegate</button>
+      )}
+    </div>
   );
-};
+}
+
+function Buy() {
+  const [password, setPassword] = useState<string>("");
+  const [seedPhrase, setSeedPhrase] = useState<string[]>([]);
+  const [accountAddress, setAccountAddress] = useState<string>("");
+  const [accountBalance, setAccountBalance] = useState<number>(0);
+  const [connection, setConnection] = useState<web3.Connection>();
+  const [voteAccounts, setVoteAccounts] = useState<any>([]);
+
+  const handleSubmit = async () => {
+    try {
+      const _seedPhrase = await getSeedPhrase(password);
+      const seedPhrase: string[] = [];
+      const _encryptedSeedPhrase = fromProtectedString(_seedPhrase.phrase)
+        .split(/\s+/g)
+        .map(toProtectedString);
+      _encryptedSeedPhrase.forEach((v) =>
+        seedPhrase.push(fromProtectedString(v)),
+      );
+      if (seedPhrase.length > 0) {
+        setSeedPhrase(seedPhrase);
+        const seed = await bip39.mnemonicToSeed(seedPhrase.join(" ").trimEnd());
+        const seedHex = seed.slice(0, 32).toString("hex");
+
+        const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(seedHex, "hex"));
+        const publicKey = bs58.encode(Buffer.from(keyPair.publicKey));
+        setAccountAddress(publicKey);
+
+        const _connection = new web3.Connection(
+          "https://evm-devnet.nexis.network",
+          {
+            commitment: "singleGossip",
+          },
+        );
+        setConnection(_connection);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //fetch balance if connection
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const details = await connection?.getBalance(
+        new web3.PublicKey(accountAddress!),
+      );
+      if (!details) {
+        setAccountBalance(0);
+      } else {
+        setAccountBalance(details / 1e9);
+      }
+    };
+
+    const fetchValidators = async () => {
+      const response = await connection?.getVoteAccounts();
+      if (response) {
+        setVoteAccounts((response as any).current);
+      } else {
+        setVoteAccounts([]);
+      }
+    };
+
+    if (connection) {
+      fetchBalance();
+      fetchValidators();
+    }
+  }, [connection]);
+
+  return (
+    <div>
+      <h2 className={classNames("font-bold text-brand-light", "text-xl mt-4")}>
+        Nexis Native Staking
+      </h2>
+      <h2 className={classNames(" text-brand-light", "text-lg mt-2 mb-8")}>
+        Earn rewards by delegating nodes to strengthen network security on Nexis
+        Native (Devnet)
+      </h2>
+      {seedPhrase.length > 0 ? (
+        <>
+          <>
+            <div>
+              Account Address: {accountAddress}
+              <br />
+              Account Balance: {accountBalance}
+            </div>
+            <h2
+              className={classNames(
+                "font-bold text-brand-light",
+                "text-xl mt-4",
+              )}
+            >
+              Validators {voteAccounts.length}
+            </h2>
+            {voteAccounts.map((voteAcc: any) => {
+              return (
+                <VoteAccountCard
+                  voteAcc={voteAcc}
+                  seedPhrase={seedPhrase}
+                  key={voteAcc.votePubkey}
+                />
+              );
+            })}
+          </>
+        </>
+      ) : (
+        <>
+          <input
+            type="text"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+          <button onClick={handleSubmit}>access staking page</button>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default Buy;
