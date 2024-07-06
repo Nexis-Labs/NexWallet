@@ -5,6 +5,7 @@ import Input from "app/components/elements/Input";
 import { composeValidators, required } from "app/utils";
 import axios from "axios";
 import { useDialog } from "app/hooks/dialog";
+import classNames from "clsx";
 
 function Faucet() {
   const { alert } = useDialog();
@@ -38,10 +39,20 @@ function Faucet() {
         onSubmit={onSubmit}
         render={({ handleSubmit, submitting }) => (
           <>
-            <p className="mb-6 text-base text-brand-gray">
+            <h2
+              className={classNames(
+                "font-bold text-brand-light",
+                "text-xl mt-4",
+              )}
+            >
+              Devnet Faucet
+            </h2>
+            <h2
+              className={classNames(" text-brand-light", "text-lg mt-2 mb-8")}
+            >
               Claim free NZT Devnet Tokens from this faucet! TBR: It is not real
               money, but still use wisely
-            </p>
+            </h2>
 
             <Field name="address" validate={composeValidators(required)}>
               {({ input, meta }) => (

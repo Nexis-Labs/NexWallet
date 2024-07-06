@@ -13,7 +13,8 @@ import { ReactComponent as WigwamTitleIcon } from "app/icons/nexis-logo.svg";
 import useSidebarLinks from "./Sidebar.Links";
 
 const Sidebar: FC = () => {
-  const { NavLinksPrimary, NavLinksSecondary } = useSidebarLinks();
+  const { NavLinksPrimary, NavLinksNative, NavLinksSecondary } =
+    useSidebarLinks();
 
   return (
     <nav
@@ -35,11 +36,19 @@ const Sidebar: FC = () => {
       >
         <WigwamTitleIcon className={classNames("ml-3 my-1 h-8 w-auto")} />
       </Link>
-      <SidebarBlock links={NavLinksPrimary} />
+      <SidebarBlock links={NavLinksPrimary} title="Nexis EVM" />
+      <SidebarBlock
+        links={NavLinksNative}
+        className={classNames(
+          "mt-[2.25rem] pt-4",
+          "border-t border-brand-main/[.07]",
+        )}
+        title="Nexis Native"
+      />
       <SidebarBlock
         links={NavLinksSecondary}
         className={classNames(
-          "mt-[6.25rem] pt-4",
+          "mt-[2.25rem] pt-4",
           "border-t border-brand-main/[.07]",
         )}
       />
@@ -61,15 +70,24 @@ type SidebarLink = {
 type SidebarBlockProps = {
   links: SidebarLink[];
   className?: string;
+  title?: string;
 };
 
-const SidebarBlock: FC<SidebarBlockProps> = ({ links, className }) => {
+const SidebarBlock: FC<SidebarBlockProps> = ({ links, className, title }) => {
   const page = useAtomValue(pageAtom);
   const tokenSlug = useAtomValue(tokenSlugAtom);
   const updateAvailable = useAtomValue(updateAvailableAtom);
 
   return (
     <div className={classNames("flex flex-col", className)}>
+      <h2
+        className={classNames(
+          "font-bold text-brand-light",
+          "text-base mb-2 ml-3",
+        )}
+      >
+        {title}
+      </h2>
       {links.map((link) => {
         const { route, label, action } = link;
         const isPageActive = route === page;
@@ -112,33 +130,35 @@ const SidebarBlock: FC<SidebarBlockProps> = ({ links, className }) => {
         }
 
         return (
-          <Link
-            type="button"
-            key={route}
-            to={{
-              page: route,
-            }}
-            merge={withTokenSlug(page, tokenSlug) ? ["token"] : undefined}
-            className={classNames(
-              "group",
-              "text-base font-bold",
-              "w-48 py-2 px-3 mb-2",
-              "rounded-[.625rem]",
-              "flex items-center",
-              "transition-colors",
-              "text-brand-light/80 hover:text-brand-light focus:text-brand-light",
-              "group",
-              isPageActive && "bg-brand-main/5 !text-brand-light",
-              "last:mb-0",
-            )}
-            onClick={handleClick}
-          >
-            <LinkContent
-              hasNotification={notificationBadge}
-              isActive={isPageActive}
-              link={link}
-            />
-          </Link>
+          <>
+            <Link
+              type="button"
+              key={route}
+              to={{
+                page: route,
+              }}
+              merge={withTokenSlug(page, tokenSlug) ? ["token"] : undefined}
+              className={classNames(
+                "group",
+                "text-base font-bold",
+                "w-48 py-2 px-3 mb-2",
+                "rounded-[.625rem]",
+                "flex items-center",
+                "transition-colors",
+                "text-brand-light/80 hover:text-brand-light focus:text-brand-light",
+                "group",
+                isPageActive && "bg-brand-main/5 !text-brand-light",
+                "last:mb-0",
+              )}
+              onClick={handleClick}
+            >
+              <LinkContent
+                hasNotification={notificationBadge}
+                isActive={isPageActive}
+                link={link}
+              />
+            </Link>
+          </>
         );
       })}
     </div>

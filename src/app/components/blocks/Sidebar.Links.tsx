@@ -9,7 +9,7 @@ import { ReactComponent as ReceiveIcon } from "app/icons/Receive.svg";
 import { ReactComponent as SendIcon } from "app/icons/Send.svg";
 import { ReactComponent as SwapIcon } from "app/icons/SwapIcon.svg";
 import { ReactComponent as FaucetIcon } from "app/icons/Receive.svg";
-import { ReactComponent as AppsIcon } from "app/icons/Apps.svg";
+// import { ReactComponent as AppsIcon } from "app/icons/Apps.svg";
 import { ReactComponent as ContactsIcon } from "app/icons/Contacts.svg";
 import { ReactComponent as WalletsIcon } from "app/icons/Wallets.svg";
 import { ReactComponent as BuyIcon } from "app/icons/Buy-page.svg";
@@ -41,12 +41,6 @@ const useSidebarLinks = () => {
         Icon: OverviewIcon,
       },
       {
-        label: "Activity",
-        Icon: ActivityIcon,
-        action: () => setActivityOpened([true, "replace"]),
-        badge: activityBadgeAmount,
-      },
-      {
         route: Page.Transfer,
         label: "Send",
         Icon: SendIcon,
@@ -55,15 +49,6 @@ const useSidebarLinks = () => {
         label: "Receive",
         Icon: ReceiveIcon,
         action: () => setReceiveOpened([true, "replace"]),
-      },
-      {
-        route: Page.Buy,
-        label: "Buy",
-        Icon: BuyIcon,
-        action: () =>
-          trackEvent(TEvent.BuyNavigated, {
-            page: "dashboard",
-          }),
       },
       {
         route: Page.Swap,
@@ -86,9 +71,10 @@ const useSidebarLinks = () => {
           }),
       },
       {
-        route: Page.Rewards,
-        label: "Rewards",
-        Icon: RewardsIcon,
+        label: "Activity",
+        Icon: ActivityIcon,
+        action: () => setActivityOpened([true, "replace"]),
+        badge: activityBadgeAmount,
       },
       // {
       //   label: "Bug bounty",
@@ -99,12 +85,12 @@ const useSidebarLinks = () => {
       //       content: <FindBug.Content />,
       //     }),
       // },
-      {
-        route: Page.Apps,
-        label: "Stake",
-        Icon: AppsIcon,
-        // soon: true,
-      },
+      // {
+      //   route: Page.Apps,
+      //   label: "Stake",
+      //   Icon: AppsIcon,
+      //   // soon: true,
+      // },
     ];
   }, [
     activityBadgeAmount,
@@ -143,12 +129,32 @@ const useSidebarLinks = () => {
     ];
   }, [alert]);
 
+  const NavLinksNative = useMemo(() => {
+    return [
+      {
+        route: Page.Buy,
+        label: "Stake",
+        Icon: BuyIcon,
+        action: () =>
+          trackEvent(TEvent.BuyNavigated, {
+            page: "dashboard",
+          }),
+      },
+      {
+        route: Page.Rewards,
+        label: "Rewards",
+        Icon: RewardsIcon,
+      },
+    ];
+  }, []);
+
   return useMemo(
     () => ({
       NavLinksPrimary,
+      NavLinksNative,
       NavLinksSecondary,
     }),
-    [NavLinksPrimary, NavLinksSecondary],
+    [NavLinksPrimary, NavLinksNative, NavLinksSecondary],
   );
 };
 
