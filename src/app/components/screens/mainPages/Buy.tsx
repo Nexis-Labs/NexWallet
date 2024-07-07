@@ -361,19 +361,15 @@ function Buy() {
                   </p>
                   <div className="flex justify-between mt-4">
                     <button
-                      onClick={() => deactivate(stake.pubkey)}
+                      onClick={() => {
+                        deactivate(stake.pubkey);
+                        withdraw(stake.pubkey);
+                      }}
                       className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                     >
                       Undelegate
                     </button>
-                  </div>
-                  <div className="flex justify-between mt-4">
-                    <button
-                      onClick={() => withdraw(stake.pubkey)}
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    >
-                      Withdraw
-                    </button>
+                    :
                   </div>
                 </div>
               );
