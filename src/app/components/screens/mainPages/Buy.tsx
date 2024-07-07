@@ -31,7 +31,6 @@ function VoteAccountCard({ voteAcc, seedPhrase }: Props) {
       );
       const stakeAccount = web3.Keypair.generate();
 
-      // Fund the stake account with the specified amount
       const lamports = web3.LAMPORTS_PER_SOL * parseFloat(amount);
       const createStakeAccountIx = web3.StakeProgram.createAccount({
         fromPubkey: fromWallet.publicKey,
@@ -43,20 +42,17 @@ function VoteAccountCard({ voteAcc, seedPhrase }: Props) {
         lamports,
       });
 
-      // Delegate the stake
       const delegateIx = web3.StakeProgram.delegate({
         stakePubkey: stakeAccount.publicKey,
         authorizedPubkey: fromWallet.publicKey,
         votePubkey: new web3.PublicKey(voteAcc.votePubkey),
       });
 
-      // Create transaction and add both instructions
       const transaction = new web3.Transaction().add(
         createStakeAccountIx,
         delegateIx,
       );
 
-      // Send the transaction
       const signature = await web3.sendAndConfirmTransaction(
         connection,
         transaction,
@@ -73,29 +69,41 @@ function VoteAccountCard({ voteAcc, seedPhrase }: Props) {
   };
 
   return (
-    <div>
-      node pubkey : {voteAcc.nodePubkey}
-      <br />
-      vote pubkey : {voteAcc.votePubkey}
-      <br />
-      rootSlot : {voteAcc.rootSlot}
-      <br />
-      activated stake: {voteAcc.activatedStakeStr}
-      <br />
-      commission: {voteAcc.activatedStakeStr}
-      <br />
+    <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
+      <h2 className="text-xl font-semibold mb-2">Validator Information</h2>
+      <p>Node Pubkey: {voteAcc.nodePubkey}</p>
+      <p>Vote Pubkey: {voteAcc.votePubkey}</p>
+      <p>Root Slot: {voteAcc.rootSlot}</p>
+      <p>Activated Stake: {voteAcc.activatedStakeStr}</p>
+      <p>Commission: {voteAcc.activatedStakeStr}</p>
       {displayInputs ? (
         <>
           <input
-            placeholder="amount"
+            placeholder="Amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
+            className="border p-2 rounded mb-2"
           />
-          <button onClick={handleStake}>Stake Now</button>
-          <button onClick={() => setDisplayInputs(false)}>Cancel</button>
+          <button
+            onClick={handleStake}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
+          >
+            Stake Now
+          </button>
+          <button
+            onClick={() => setDisplayInputs(false)}
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Cancel
+          </button>
         </>
       ) : (
-        <button onClick={() => setDisplayInputs(true)}>Delegate</button>
+        <button
+          onClick={() => setDisplayInputs(true)}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Delegate
+        </button>
       )}
     </div>
   );
@@ -108,6 +116,7 @@ function Buy() {
   const [accountBalance, setAccountBalance] = useState<number>(0);
   const [connection, setConnection] = useState<web3.Connection>();
   const [voteAccounts, setVoteAccounts] = useState<any>([]);
+  const [allStakes, setAllStakes] = useState<any[]>([]);
 
   const handleSubmit = async () => {
     try {
@@ -141,7 +150,6 @@ function Buy() {
     }
   };
 
-  //fetch balance if connection
   useEffect(() => {
     const fetchBalance = async () => {
       const details = await connection?.getBalance(
@@ -169,6 +177,97 @@ function Buy() {
     }
   }, [connection]);
 
+  useEffect(() => {
+    const getUserStakes = async () => {
+      const seed = await bip39.mnemonicToSeed(seedPhrase.join(" ").trimEnd());
+      const seedHex = seed.slice(0, 32).toString("hex");
+      const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(seedHex, "hex"));
+      const fromWallet = web3.Keypair.fromSecretKey(
+        Buffer.from(keyPair.secretKey),
+      );
+      const allStakeAccounts = await connection?.getParsedProgramAccounts(
+        web3.StakeProgram.programId,
+        {
+          filters: [
+            {
+              memcmp: {
+                offset: 12,
+                bytes: fromWallet.publicKey.toBase58(),
+              },
+            },
+          ],
+        },
+      );
+      setAllStakes(allStakeAccounts as any);
+    };
+
+    if (connection) {
+      getUserStakes();
+    }
+  }, [connection]);
+
+  const handleUndelegate = async (stake: any) => {
+    try {
+      const seed = await bip39.mnemonicToSeed(seedPhrase.join(" ").trimEnd());
+      const seedHex = seed.slice(0, 32).toString("hex");
+      const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(seedHex, "hex"));
+      const fromWallet = web3.Keypair.fromSecretKey(
+        Buffer.from(keyPair.secretKey),
+      );
+
+      const undelegateIx = web3.StakeProgram.deactivate({
+        stakePubkey: stake.pubkey,
+        authorizedPubkey: fromWallet.publicKey,
+      });
+
+      const transaction = new web3.Transaction().add(undelegateIx);
+
+      const signature = await web3.sendAndConfirmTransaction(
+        connection!,
+        transaction,
+        [fromWallet],
+      );
+
+      console.log("Undelegate transaction signature:", signature);
+      alert("Undelegate successful!");
+    } catch (error) {
+      console.error("Error undelegating:", error);
+      alert("Undelegate failed!");
+    }
+  };
+
+  const handleWithdraw = async (stake: any) => {
+    try {
+      const seed = await bip39.mnemonicToSeed(seedPhrase.join(" ").trimEnd());
+      const seedHex = seed.slice(0, 32).toString("hex");
+      const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(seedHex, "hex"));
+      const fromWallet = web3.Keypair.fromSecretKey(
+        Buffer.from(keyPair.secretKey),
+      );
+
+      const withdrawIx = web3.StakeProgram.withdraw({
+        stakePubkey: stake.pubkey,
+        authorizedPubkey: fromWallet.publicKey,
+        toPubkey: fromWallet.publicKey,
+        lamports: stake.account.lamports,
+      });
+
+      const transaction = new web3.Transaction().add(withdrawIx);
+
+      const signature = await web3.sendAndConfirmTransaction(
+        connection!,
+        transaction,
+        [fromWallet],
+      );
+
+      console.log("Withdraw transaction signature:", signature);
+      alert("Withdraw successful!");
+    } catch (error) {
+      console.error("Error withdrawing:", error);
+      alert("Withdraw failed!");
+    }
+  };
+
   return (
     <div>
       <h2 className={classNames("font-bold text-brand-light", "text-xl mt-4")}>
@@ -180,30 +279,78 @@ function Buy() {
       </h2>
       {seedPhrase.length > 0 ? (
         <>
-          <>
-            <div>
-              Account Address: {accountAddress}
-              <br />
-              Account Balance: {accountBalance}
-            </div>
-            <h2
-              className={classNames(
-                "font-bold text-brand-light",
-                "text-xl mt-4",
-              )}
-            >
-              Validators {voteAccounts.length}
-            </h2>
-            {voteAccounts.map((voteAcc: any) => {
+          <div>
+            Account Address: {accountAddress}
+            <br />
+            Account Balance: {accountBalance}
+          </div>
+          <h2
+            className={classNames("font-bold text-brand-light", "text-xl mt-4")}
+          >
+            Validators {voteAccounts.length}
+          </h2>
+          {voteAccounts.map((voteAcc: any) => {
+            return (
+              <VoteAccountCard
+                voteAcc={voteAcc}
+                seedPhrase={seedPhrase}
+                key={voteAcc.votePubkey}
+              />
+            );
+          })}
+          <h2
+            className={classNames("font-bold text-brand-light", "text-xl mt-4")}
+          >
+            Your Stakes
+          </h2>
+          {allStakes &&
+            allStakes.map((stake: any) => {
               return (
-                <VoteAccountCard
-                  voteAcc={voteAcc}
-                  seedPhrase={seedPhrase}
-                  key={voteAcc.votePubkey}
-                />
+                <div
+                  key={stake.pubkey.toString()}
+                  className="bg-black shadow-lg rounded-lg p-4 mb-4"
+                >
+                  <h2 className="text-xl font-semibold mb-2">
+                    Stake Account: {stake.pubkey.toString()}
+                  </h2>
+                  <p>
+                    <strong>Authorized Staker:</strong>{" "}
+                    {stake.account.data.parsed.info.meta.authorized.staker}
+                  </p>
+                  <p>
+                    <strong>Authorized Withdrawer:</strong>{" "}
+                    {stake.account.data.parsed.info.meta.authorized.withdrawer}
+                  </p>
+                  <p>
+                    <strong>Credits Observed:</strong>{" "}
+                    {stake.account.data.parsed.info.stake.creditsObserved}
+                  </p>
+                  <p>
+                    <strong>Delegation:</strong>{" "}
+                    {JSON.stringify(
+                      stake.account.data.parsed.info.stake.delegation,
+                    )}
+                  </p>
+                  <p>
+                    <strong>Lamports:</strong> {stake.account.lamports}
+                  </p>
+                  <div className="flex justify-between mt-4">
+                    <button
+                      onClick={() => handleUndelegate(stake)}
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Undelegate
+                    </button>
+                    <button
+                      onClick={() => handleWithdraw(stake)}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Withdraw
+                    </button>
+                  </div>
+                </div>
               );
             })}
-          </>
         </>
       ) : (
         <>
@@ -211,8 +358,15 @@ function Buy() {
             type="text"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            className="border p-2 rounded mb-2"
+            placeholder="Enter Password"
           />
-          <button onClick={handleSubmit}>access staking page</button>
+          <button
+            onClick={handleSubmit}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Access Staking Page
+          </button>
         </>
       )}
     </div>

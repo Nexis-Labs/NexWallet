@@ -495,7 +495,7 @@ module.exports = {
     }),
 
     new WebpackBar({
-      name: "Wigwam",
+      name: "NexWallet",
       color: "#ffffff",
     }),
 

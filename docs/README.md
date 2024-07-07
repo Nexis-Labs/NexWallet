@@ -1,4 +1,4 @@
-# Wigwam Web Extension Wallet - General Tech Documentation
+# NexWallet Web Extension Wallet - General Tech Documentation
 
 ## Architecture
 
