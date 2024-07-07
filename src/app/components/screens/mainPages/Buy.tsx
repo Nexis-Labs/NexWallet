@@ -141,6 +141,7 @@ function Buy() {
           "https://evm-devnet.nexis.network",
           {
             commitment: "singleGossip",
+            wsEndpoint: "wss://evm-devnet.nexis.network/ws",
           },
         );
         setConnection(_connection);
@@ -206,65 +207,70 @@ function Buy() {
     }
   }, [connection]);
 
-  const handleUndelegate = async (stake: any) => {
+  const deactivate = async (stakeAccount: any) => {
+    const seed = await bip39.mnemonicToSeed(seedPhrase.join(" ").trimEnd());
+    const seedHex = seed.slice(0, 32).toString("hex");
+    const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(seedHex, "hex"));
+    const wallet = web3.Keypair.fromSecretKey(Buffer.from(keyPair.secretKey));
     try {
-      const seed = await bip39.mnemonicToSeed(seedPhrase.join(" ").trimEnd());
-      const seedHex = seed.slice(0, 32).toString("hex");
-      const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(seedHex, "hex"));
-      const fromWallet = web3.Keypair.fromSecretKey(
-        Buffer.from(keyPair.secretKey),
-      );
-
-      const undelegateIx = web3.StakeProgram.deactivate({
-        stakePubkey: stake.pubkey,
-        authorizedPubkey: fromWallet.publicKey,
+      const deactivateTx = web3.StakeProgram.deactivate({
+        stakePubkey: new web3.PublicKey(stakeAccount),
+        authorizedPubkey: wallet.publicKey,
       });
-
-      const transaction = new web3.Transaction().add(undelegateIx);
-
-      const signature = await web3.sendAndConfirmTransaction(
+      const deactivateTxId = await web3.sendAndConfirmTransaction(
         connection!,
-        transaction,
-        [fromWallet],
+        deactivateTx,
+        [wallet],
       );
+      console.log(`Stake account deactivated. Tx Id: ${deactivateTxId}`);
 
-      console.log("Undelegate transaction signature:", signature);
-      alert("Undelegate successful!");
+      // Check in on our stake account. It should now be inactive.
+      await connection?.getStakeActivation(new web3.PublicKey(stakeAccount));
+      alert("undelegated successfully");
     } catch (error) {
-      console.error("Error undelegating:", error);
-      alert("Undelegate failed!");
+      console.log("errorrrr", await (error as any).getLogs());
     }
   };
 
-  const handleWithdraw = async (stake: any) => {
+  const withdraw = async (stakeAccount: any) => {
+    const seed = await bip39.mnemonicToSeed(seedPhrase.join(" ").trimEnd());
+    const seedHex = seed.slice(0, 32).toString("hex");
+    const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(seedHex, "hex"));
+    const wallet = web3.Keypair.fromSecretKey(Buffer.from(keyPair.secretKey));
+    const stakeAccountPublicKey = new web3.PublicKey(stakeAccount);
+    const stakeBalance = await connection?.getBalance(stakeAccountPublicKey);
     try {
-      const seed = await bip39.mnemonicToSeed(seedPhrase.join(" ").trimEnd());
-      const seedHex = seed.slice(0, 32).toString("hex");
-      const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(seedHex, "hex"));
-      const fromWallet = web3.Keypair.fromSecretKey(
-        Buffer.from(keyPair.secretKey),
-      );
-
-      const withdrawIx = web3.StakeProgram.withdraw({
-        stakePubkey: stake.pubkey,
-        authorizedPubkey: fromWallet.publicKey,
-        toPubkey: fromWallet.publicKey,
-        lamports: stake.account.lamports,
+      const withdrawTx = web3.StakeProgram.withdraw({
+        stakePubkey: stakeAccountPublicKey,
+        authorizedPubkey: wallet.publicKey,
+        toPubkey: wallet.publicKey,
+        lamports: stakeBalance!,
       });
 
-      const transaction = new web3.Transaction().add(withdrawIx);
-
-      const signature = await web3.sendAndConfirmTransaction(
+      const withdrawTxId = await web3.sendAndConfirmTransaction(
         connection!,
-        transaction,
-        [fromWallet],
+        withdrawTx,
+        [wallet],
       );
 
-      console.log("Withdraw transaction signature:", signature);
-      alert("Withdraw successful!");
+      console.log(`Stake account withdrawn. Tx Id: ${withdrawTxId}`);
+
+      // Confirm that our stake account balance is now 0
+      await connection?.getBalance(stakeAccountPublicKey);
+      alert("withdrawn successfully");
     } catch (error) {
-      console.error("Error withdrawing:", error);
-      alert("Withdraw failed!");
+      console.log("errorrrr", await (error as any).getLogs());
+      if (
+        (error as any)
+          .toString()
+          .includes("Transaction was not confirmed in 30.00 seconds")
+      ) {
+        setTimeout(function () {
+          window.location.reload();
+        }, 5000);
+      } else {
+        alert("error withdrawing");
+      }
     }
   };
 
@@ -351,17 +357,19 @@ function Buy() {
                     }
                   </p>
                   <p>
-                    <strong>Lamports:</strong> {stake.account.lamports}
+                    <strong>Lamports:</strong> {stake.account.lamports / 1e9}
                   </p>
                   <div className="flex justify-between mt-4">
                     <button
-                      onClick={() => handleUndelegate(stake)}
+                      onClick={() => deactivate(stake.pubkey)}
                       className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                     >
                       Undelegate
                     </button>
+                  </div>
+                  <div className="flex justify-between mt-4">
                     <button
-                      onClick={() => handleWithdraw(stake)}
+                      onClick={() => withdraw(stake.pubkey)}
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     >
                       Withdraw
