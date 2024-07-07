@@ -10,6 +10,7 @@ import { ReactComponent as WigwamIcon } from "app/icons/nexis-logo.svg";
 import { DotBackgroundDemo } from "../ui/dotBg";
 import AddAccountHeader from "../blocks/AddAccountHeader";
 import { FlipWordsDemo } from "../ui/flipHeader";
+import { SparklesCore } from "../ui/sparkles";
 
 const Welcome: FC = () => {
   const { all } = useAtomValue(profileStateAtom);
@@ -50,6 +51,7 @@ const Welcome: FC = () => {
             )}
           >
             <div className="flex flex-col items-center justify-center">
+              <SparklesCore />
               <WigwamIcon
                 className={classNames(
                   "w-36 h-auto",
