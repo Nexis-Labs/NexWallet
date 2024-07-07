@@ -69,7 +69,7 @@ function VoteAccountCard({ voteAcc, seedPhrase }: Props) {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4 mb-4">
+    <div className="bg-black shadow-lg rounded-lg p-4 mb-4">
       <h2 className="text-xl font-semibold mb-2">Validator Information</h2>
       <p>Node Pubkey: {voteAcc.nodePubkey}</p>
       <p>Vote Pubkey: {voteAcc.votePubkey}</p>
@@ -326,10 +326,29 @@ function Buy() {
                     {stake.account.data.parsed.info.stake.creditsObserved}
                   </p>
                   <p>
-                    <strong>Delegation:</strong>{" "}
-                    {JSON.stringify(
-                      stake.account.data.parsed.info.stake.delegation,
-                    )}
+                    <strong>Activated Epoch:</strong>{" "}
+                    {
+                      stake.account.data.parsed.info.stake.delegation
+                        .activationEpoch
+                    }
+                  </p>
+                  <p>
+                    <strong>Deactivation Epoch:</strong>{" "}
+                    {
+                      stake.account.data.parsed.info.stake.delegation
+                        .deactivationEpoch
+                    }
+                  </p>
+                  <p>
+                    <strong>Stake:</strong>{" "}
+                    {stake.account.data.parsed.info.stake.delegation.stake}
+                  </p>
+                  <p>
+                    <strong>Warmup Cooldown Rate:</strong>{" "}
+                    {
+                      stake.account.data.parsed.info.stake.delegation
+                        .warmupCooldownRate
+                    }
                   </p>
                   <p>
                     <strong>Lamports:</strong> {stake.account.lamports}
