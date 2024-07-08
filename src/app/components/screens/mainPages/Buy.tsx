@@ -6,6 +6,7 @@ import * as bip39 from "bip39";
 import bs58 from "bs58";
 import nacl from "tweetnacl";
 import * as web3 from "@solana/web3.js";
+import { Input } from "app/components/ui/input";
 
 interface Props {
   voteAcc: any;
@@ -377,12 +378,12 @@ function Buy() {
         </>
       ) : (
         <>
-          <input
-            type="text"
-            onChange={(e) => setPassword(e.target.value)}
+          <Input
             value={password}
             className="border p-2 rounded mb-2"
-            placeholder="Enter Password"
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="••••••••"
+            type="password"
           />
           <button
             onClick={handleSubmit}
