@@ -80,7 +80,7 @@ function VoteAccountCard({ voteAcc, seedPhrase }: Props) {
         <p>Vote Pubkey: {voteAcc.votePubkey}</p>
         <p>Root Slot: {voteAcc.rootSlot}</p>
         <p>Activated Stake: {voteAcc.activatedStakeStr}</p>
-        <p>Commission: {voteAcc.activatedStakeStr}</p>
+        <p>Commission: {voteAcc.commission} %</p>
         {displayInputs ? (
           <>
             <input
