@@ -70,63 +70,68 @@ function VoteAccountCard({ voteAcc, seedPhrase }: Props) {
   };
 
   return (
-    <div className="bg-black shadow-lg rounded-lg p-4 mb-4">
-      <h2 className="text-xl font-semibold mb-2">Validator Information</h2>
-      <p>Node Pubkey: {voteAcc.nodePubkey}</p>
-      <p>Vote Pubkey: {voteAcc.votePubkey}</p>
-      <p>Root Slot: {voteAcc.rootSlot}</p>
-      <p>Activated Stake: {voteAcc.activatedStakeStr}</p>
-      <p>Commission: {voteAcc.activatedStakeStr}</p>
-      {displayInputs ? (
-        <>
-          <input
-            placeholder="Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="border p-2 rounded mb-2"
-          />
-          <button
-            onClick={handleStake}
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
-          >
-            Stake Now
-          </button>
-          <button
-            onClick={() => setDisplayInputs(false)}
-            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Cancel
-          </button>
-        </>
-      ) : (
-        <button
-          className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block"
-          onClick={() => setDisplayInputs(true)}
-        >
-          <span className="absolute inset-0 overflow-hidden rounded-full">
-            <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-          </span>
-          <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 ">
-            <span>Delegate</span>
-            <svg
-              fill="none"
-              height="16"
-              viewBox="0 0 24 24"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+    <div className="max-w-md rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black border-white">
+      <div
+        className="bg-black shadow-lg rounded-lg p-4 mb-4"
+        style={{ border: "1px solid #4eba94" }}
+      >
+        <h2 className="text-xl font-semibold mb-2">Validator Information</h2>
+        <p>Node Pubkey: {voteAcc.nodePubkey}</p>
+        <p>Vote Pubkey: {voteAcc.votePubkey}</p>
+        <p>Root Slot: {voteAcc.rootSlot}</p>
+        <p>Activated Stake: {voteAcc.activatedStakeStr}</p>
+        <p>Commission: {voteAcc.activatedStakeStr}</p>
+        {displayInputs ? (
+          <>
+            <input
+              placeholder="Amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="border p-2 rounded mb-2"
+            />
+            <button
+              onClick={handleStake}
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
             >
-              <path
-                d="M10.75 8.75L14.25 12L10.75 15.25"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-              />
-            </svg>
-          </div>
-          <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
-        </button>
-      )}
+              Stake Now
+            </button>
+            <button
+              onClick={() => setDisplayInputs(false)}
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Cancel
+            </button>
+          </>
+        ) : (
+          <button
+            className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block"
+            onClick={() => setDisplayInputs(true)}
+          >
+            <span className="absolute inset-0 overflow-hidden rounded-full">
+              <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            </span>
+            <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 ">
+              <span>Delegate</span>
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 24 24"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.75 8.75L14.25 12L10.75 15.25"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                />
+              </svg>
+            </div>
+            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
+          </button>
+        )}
+      </div>
     </div>
   );
 }
