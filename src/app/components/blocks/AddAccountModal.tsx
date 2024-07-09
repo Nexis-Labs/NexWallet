@@ -13,7 +13,7 @@ import { useIsMounted } from "lib/react-hooks/useIsMounted";
 
 import { WalletStatus } from "core/types";
 
-import { IS_FIREFOX } from "app/defaults";
+// import { IS_FIREFOX } from "app/defaults";
 import { AddAccountStep } from "app/nav";
 import {
   addAccountModalAtom,
@@ -185,7 +185,7 @@ const AddAccountModal = memo(() => {
                 )}
                 type="scroll"
               >
-                {isInitial && (
+                {/* {isInitial && (
                   <div
                     className={classNames(
                       "absolute inset-0 rounded-md overflow-hidden",
@@ -193,7 +193,7 @@ const AddAccountModal = memo(() => {
                       IS_FIREFOX && "brandbg-large-modal",
                     )}
                   />
-                )}
+                )} */}
 
                 <BackButton
                   navAtom={addAccountStepAtom}
