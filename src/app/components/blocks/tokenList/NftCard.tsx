@@ -50,11 +50,7 @@ const NftCard = memo(
             "group",
             "transition",
             (isManageMode || !isActive) &&
-<<<<<<< HEAD
               "hover:bg-brand-main/10 hover:!opacity-100",
-=======
-              "hover:bg-[#1b1d1f] hover:!opacity-100",
->>>>>>> 047a41e00cb7b4fbc77797aecd2e03c7da2629e3
             isActive && "bg-brand-main/20",
             (disabled || rawBalance === "0") && "opacity-60",
             invisible && "invisible",
