@@ -64,7 +64,7 @@ const Profiles: FC = () => {
                   "rounded-[.625rem]",
                   "flex items-center justify-center",
                   "transition-colors",
-                  active ? "bg-brand-main/20" : "hover:bg-brand-main/10",
+                  active ? "bg-brand-main/20" : "hover:bg-[#1b1d1f]",
                   !isLastInRow && "mr-2",
                 )}
                 onClick={active ? undefined : () => handleSelect(p)}
@@ -82,11 +82,11 @@ const Profiles: FC = () => {
               "w-[9.625rem] py-6 px-7 max-h-[11.75rem] mb-2",
               "rounded-[.625rem]",
               "transition-colors",
-              "hover:bg-brand-main/10 focus-visible:bg-brand-main/10",
+              "hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f]",
               "active:bg-brand-main/[.05]",
             )}
           >
-            <span className="rounded-full flex items-center justify-center bg-brand-main/10 w-24 h-24 mb-4">
+            <span className="rounded-full flex items-center justify-center bg-[#1b1d1f] w-24 h-24 mb-4">
               <AddNewIcon className="w-10 h-10" />
             </span>
             <span className="text-lg font-bold">Add new</span>
@@ -104,8 +104,8 @@ const Profiles: FC = () => {
 
             {/* <li>
               You will always see your <strong>profile avatar</strong>, on all
-              NexWallet pages. <strong>It is unique!</strong> This feature allows
-              you to <strong>determine</strong> whether the NexWallet you are
+              NexWalletpages. <strong>It is unique!</strong> This feature allows
+              you to <strong>determine</strong> whether the NexWalletyou are
               seeing is <strong>real</strong> or fake.
             </li> */}
 

@@ -403,7 +403,7 @@ const DisconnectDApp = memo<DisconnectDAppProps>(
             isPopupMode ? "text-[.625rem] h-5" : "text-xs py-0.5",
             "text-brand-inactivelight",
             "transition-colors",
-            "hover:bg-brand-main/10",
+            "hover:bg-[#1b1d1f]",
           )}
           onClick={handleDisconnect}
         >
@@ -861,7 +861,7 @@ const ActivityNetworkCard: FC<ActivityNetworkCardProps> = ({
                 isPopupMode ? "text-[.625rem] h-5" : "text-xs py-0.5",
                 "text-brand-inactivelight",
                 "transition-colors",
-                "hover:bg-brand-main/10",
+                "hover:bg-[#1b1d1f]",
               )}
               tabIndex={-1}
             >
@@ -1009,9 +1009,9 @@ const TxOptionsDropdown = memo(
                       <>
                         <li>
                           This will hide this transaction{" "}
-                          <b>only inside the NexWallet applicaiton</b>. This
-                          means you should only proceed if you are certain that
-                          the transaction was lost.
+                          <b>only inside the NexWalletapplicaiton</b>. This means
+                          you should only proceed if you are certain that the
+                          transaction was lost.
                         </li>
                         <li>
                           All pending transactions above will also be hidden.

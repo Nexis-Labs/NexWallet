@@ -143,7 +143,7 @@ const NetworkBtn: FC<NetworkBtnProps> = ({
         "rounded-[.625rem]",
         "transition-colors",
         !isActive && "hover:bg-brand-main/[.05]",
-        isActive && "bg-brand-main/10",
+        isActive && "bg-[#1b1d1f]",
         className,
       )}
       onClick={onClick}

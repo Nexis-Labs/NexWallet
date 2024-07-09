@@ -53,7 +53,7 @@ export function useSetMetaMaskCompatibleMode(withDialog = true) {
                     </strong>
                     .{" "}
                     {modeToSet === MetaMaskCompatibleMode.Strict
-                      ? "Only NexWallet will be connected to dApps"
+                      ? "Only NexWalletwill be connected to dApps"
                       : "You will be able to choose any wallet while connecting"}
                     .
                     <br />

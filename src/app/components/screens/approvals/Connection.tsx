@@ -318,7 +318,7 @@ const Account: FC<AccountProps> = ({
         "min-w-0 px-3 py-1.5",
         "rounded-[.625rem]",
         "transition-colors",
-        "hover:bg-brand-main/10 focus-visible:bg-brand-main/10",
+        "hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f]",
         "outline-none",
         className,
       )}

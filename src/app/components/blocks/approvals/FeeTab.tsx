@@ -366,7 +366,7 @@ const FeeModeItem: FC<FeeModeItemProps> = ({
         "rounded-[.625rem]",
         "transition-colors",
         "group",
-        !selected && "hover:bg-brand-main/10",
+        !selected && "hover:bg-[#1b1d1f]",
         selected && "bg-brand-main/[.2]",
       )}
     >

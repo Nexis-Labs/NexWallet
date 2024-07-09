@@ -55,8 +55,8 @@ const NetworkCard: FC<NetworkCardProps> = ({
           "transition-colors",
           "border",
           isActive
-            ? "border-blue-600 bg-brand-main/20"
-            : "border-transparent bg-brand-main/5 hover:bg-brand-main/10 focus-visible:bg-brand-main/10",
+            ? "border-none bg-[#1b1d1f]"
+            : "border-transparent bg-[#1b1d1f] hover:bg-[#1b1d1f]/50 focus-visible:bg-[#1b1d1f]/50",
           className,
         )}
       >
@@ -164,7 +164,7 @@ const PopoverButton: FC<PopoverButton> = ({
       "text-sm font-bold text-left",
       "transition-colors",
       !rest.disabled &&
-        "hover:bg-brand-main/10 focus-visible:bg-brand-main/10 hover:!opacity-100 focus-visible:!opacity-100",
+        "hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f] hover:!opacity-100 focus-visible:!opacity-100",
       "disabled:opacity-40 disabled:cursor-default",
       className,
     )}

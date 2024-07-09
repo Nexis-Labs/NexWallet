@@ -51,8 +51,7 @@ const AddAccountStepsNext = memo(() => {
   }, [alert]);
 
   return (
-    <DotBackgroundDemo
-      child={
+    <>
         <div
           ref={rootRef}
           className={classNames(
@@ -82,8 +81,7 @@ const AddAccountStepsNext = memo(() => {
             Support
           </Button>
         </div>
-      }
-    />
+    </>
   );
 });
 

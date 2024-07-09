@@ -144,7 +144,7 @@ const AddressButton: FC<{ address: string }> = ({ address }) => {
         "transition-colors",
         "flex items-center",
         "px-3 py-1.5",
-        "bg-brand-main/5 hover:bg-brand-main/10 focus-visible:bg-brand-main/10",
+        "bg-brand-main/5 hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f]",
       )}
     >
       <>
@@ -422,7 +422,7 @@ const ProfileItem: FC<ProfileItemProps & { size?: Size }> = ({
       "border",
       "rounded-lg",
       isActive
-        ? "border-blue-600 bg-brand-main/10"
+        ? "border-blue-600 bg-[#1b1d1f]"
         : "border-transparent hover:bg-brand-main/5 focus-visible:bg-brand-main/5",
       className,
     )}

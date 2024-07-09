@@ -32,7 +32,7 @@ const stateUpdatedType = Symbol();
 type GatewayPayload<T = any> = JsonRpcResponse<T> | JsonRpcNotification<T>;
 
 export class InpageProvider extends Emitter {
-  isWigwam = true;
+  isNexWallet= true;
   isMetaMask = true;
   autoRefreshOnNetworkChange = false;
 
@@ -55,11 +55,11 @@ export class InpageProvider extends Emitter {
   // https://eips.ethereum.org/EIPS/eip-6963
   // https://eips.ethereum.org/EIPS/eip-5749
   info: EIP6963ProviderInfo = Object.freeze({
-    name: "NexWallet",
+    name: "Wigwam",
     uuid: `wigwam-${process.env.BUILD_ID}`,
     rdns: "com.wigwam.wallet",
     icon: ICON_SVG_BASE64,
-    description: "NexWallet — Web 3.0 Wallet",
+    description: "NexWallet— Web 3.0 Wallet",
   });
 
   #inited = false;
@@ -69,6 +69,7 @@ export class InpageProvider extends Emitter {
   #inpage: InpageProtocol;
   #filter = new FilterManager(this);
   #subscription = new SubscriptionManager(this, this.#filter);
+  isWigwam: any;
 
   constructor(inpageProto: InpageProtocol) {
     super();
@@ -161,7 +162,7 @@ export class InpageProvider extends Emitter {
   }: RequestArguments): Promise<unknown> {
     switch (method) {
       case JsonRpcMethod.web3_clientVersion:
-        return `NexWallet/v${process.env.VERSION}`;
+        return `Wigwam/v${process.env.VERSION}`;
 
       case JsonRpcMethod.eth_chainId:
         return this.chainId!;

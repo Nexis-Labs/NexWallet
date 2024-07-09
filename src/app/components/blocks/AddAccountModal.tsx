@@ -124,9 +124,17 @@ const AddAccountModal = memo(() => {
   return (
     <Dialog.Root open={accModalOpened} onOpenChange={handleOpenChange} modal>
       <Dialog.Portal>
-        <Dialog.Overlay
-          className={classNames("fixed inset-0 z-20", "bg-black")}
-        />
+        <Dialog.Overlay className={classNames("fixed inset-0 z-20")}>
+          <video
+            autoPlay
+            loop
+            muted
+            className={classNames("absolute inset-0 w-full h-full object-cover")}
+          >
+            <source src="/video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </Dialog.Overlay>
         <Dialog.Content
           onOpenAutoFocus={(e) => e.preventDefault()}
           className={classNames(
@@ -156,8 +164,8 @@ const AddAccountModal = memo(() => {
                 ref={ref}
                 className={classNames(
                   "w-full h-full",
-                  "rounded-[2.5rem]",
-                  "border border-brand-light/5",
+                  "rounded-[1.5rem]",
+                  "border border-none",
                   !isInitial && [
                     "brandbg-large-modal",
                     "after:absolute after:inset-0",
@@ -178,8 +186,8 @@ const AddAccountModal = memo(() => {
                 {isInitial && (
                   <div
                     className={classNames(
-                      "absolute inset-0 z-[-5] rounded-[2.5rem] overflow-hidden",
-                      "bg-brand-dark/10 backdrop-blur-[30px]",
+                      "absolute inset-0 rounded-md overflow-hidden",
+                      // " backdrop-blur-[10px]",
                       IS_FIREFOX && "brandbg-large-modal",
                     )}
                   />
@@ -206,7 +214,7 @@ const AddAccountModal = memo(() => {
                     className={classNames(
                       "absolute inset-0",
                       "shadow-addaccountmodal",
-                      "rounded-[2.5rem]",
+                      "rounded-[0.5rem]",
                       "pointer-events-none",
                       "z-20",
                     )}

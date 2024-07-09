@@ -105,7 +105,7 @@ const ChangeProfileButton = memo<ChangeProfileButtonProps>(
           theme === "small" && "w-[6.5rem] px-2 py-5",
           "rounded-[.625rem]",
           "transition-colors",
-          "hover:bg-brand-main/10 focus-visible:bg-brand-main/10",
+          "hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f]",
           "active:bg-brand-main/[.05]",
           className,
         )}
@@ -114,7 +114,7 @@ const ChangeProfileButton = memo<ChangeProfileButtonProps>(
           className={classNames(
             "rounded-full",
             "flex items-center justify-center",
-            "bg-brand-main/10",
+            "bg-[#1b1d1f]",
             theme === "large" && "w-16 h-16 mb-3",
             theme === "small" && "w-12 h-12 mb-1",
           )}

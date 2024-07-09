@@ -17,7 +17,7 @@ const compatibleModesLabels = [
     content: {
       Icon: OffIcon,
       label: "Disabled",
-      description: "NexWallet will be disabled",
+      description: "NexWalletwill be disabled",
     },
   },
   {
@@ -33,7 +33,7 @@ const compatibleModesLabels = [
     content: {
       Icon: StrictIcon,
       label: "By Default",
-      description: "Only NexWallet will be connected",
+      description: "Only NexWalletwill be connected",
     },
   },
 ];

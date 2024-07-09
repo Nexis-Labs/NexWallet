@@ -171,7 +171,7 @@ const InteractionWithDapp: FC<{ className?: string }> = ({ className }) => {
               "rounded-3xl",
               "transition-colors",
               "bg-white/[.16] group-hover:bg-white/[.32]",
-              accountConnected ? "border-blue-600" : "border-transparent",
+              accountConnected ? "border-b" : "border-transparent",
               urlDisplayed ? " py-1 pl-1.5 pr-2" : "p-[0.375rem]",
             )}
           >
@@ -196,7 +196,7 @@ const InteractionWithDapp: FC<{ className?: string }> = ({ className }) => {
                       "absolute top-0 -right-1 border",
                       accountConnected
                         ? "bg-brand-redone"
-                        : "bg-[#DFE5E0] border border-[#92BC78]",
+                        : "bg-[#C5FF4A] border border-[#92BC78]",
                       "w-2 min-w-[.375rem] h-2 rounded-full",
                     )}
                   />
@@ -218,7 +218,7 @@ const InteractionWithDapp: FC<{ className?: string }> = ({ className }) => {
               "transition-colors",
               "bg-white/[.16] group-hover:bg-white/[.32]",
               "ml-2",
-              metamaskModeEnabled ? "border-blue-600" : "border-transparent",
+              metamaskModeEnabled ? "border-[#303030]" : "border-transparent",
             )}
           >
             {metamaskModeEnabled ? (
@@ -251,7 +251,7 @@ const InteractionWithDapp: FC<{ className?: string }> = ({ className }) => {
                     <div
                       className={classNames(
                         "w-2 min-w-[.375rem] h-2 rounded-full ml-2",
-                        "bg-brand-redone border border-[#92BC78]",
+                        "bg-brand-redone border border-[#ffffff]/10",
                       )}
                     />
                   ) : null}
@@ -271,8 +271,8 @@ const InteractionWithDapp: FC<{ className?: string }> = ({ className }) => {
                   "mb-4",
                   "!text-xs !font-medium",
                   accountConnected
-                    ? "!bg-[#FE00001F] !text-brand-redtext hover:!shadow-buttondanger focus-visible:!shadow-buttondanger"
-                    : "!bg-[#3072f8591F] text-brand-redone",
+                    ? "!bg-[#ffffff]/10 !text-brand-redtext hover:!shadow-buttondanger focus-visible:!shadow-buttondanger"
+                    : "!bg-[#ffffff]/10 text-brand-redone",
                 )}
                 onClick={handleToggleConnect}
               >
@@ -293,10 +293,10 @@ const InteractionWithDapp: FC<{ className?: string }> = ({ className }) => {
                 content={
                   <p>
                     When enabled - use the MetaMask connection button to connect
-                    to dApps only if the NexWallet wallet option is unavailable
-                    on the website.
+                    to dApps only if the NexWalletwallet option is unavailable on
+                    the website.
                     <br />
-                    Otherwise, choose only NexWallet wallet!
+                    Otherwise, choose only NexWalletwallet!
                   </p>
                 }
                 placement="bottom-end"

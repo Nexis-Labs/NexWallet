@@ -58,7 +58,7 @@ const AssetCard = memo(
             "rounded-[.625rem]",
             "group",
             "transition",
-            hoverable && "hover:bg-brand-main/10",
+            hoverable && "hover:bg-[#1b1d1f]",
             isActive && "bg-brand-main/20",
             disabled && "opacity-60",
             "hover:opacity-100",

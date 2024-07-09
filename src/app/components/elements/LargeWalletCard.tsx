@@ -62,7 +62,7 @@ const LargeWalletCard = memo<LargeWalletCardProps>(({ account, className }) => {
             className={classNames(
               "transform-gpu transition",
               "px-4 pt-4 pb-3",
-              "bg-brand-main/10",
+              "bg-[#1b1d1f]",
               "rounded-[.625rem]",
               "flex flex-col",
               "relative",

@@ -19,14 +19,14 @@ export class UniversalInpageProvider extends Emitter {
     if (!this.#sharedProperty) return this.allProviders;
 
     const allWigwamStrict = this.allProviders.filter(
-      (p) => p.isWigwam && p.mmCompatible === MetaMaskCompatibleMode.Strict,
+      (p) => p.isNexWallet&& p.mmCompatible === MetaMaskCompatibleMode.Strict,
     );
 
     // If we have wigwam providers with strict metamask compatible mode (use as default)
     if (allWigwamStrict.length > 0) return allWigwamStrict;
 
     return this.allProviders.filter(
-      (p) => !p.isWigwam || p.mmCompatible === MetaMaskCompatibleMode.Hybrid,
+      (p) => !p.isNexWallet|| p.mmCompatible === MetaMaskCompatibleMode.Hybrid,
     );
   }
 
@@ -47,10 +47,10 @@ export class UniversalInpageProvider extends Emitter {
     return (this.currentProvider as any)._metamask ?? {};
   }
 
-  get isWigwam() {
+  get isNexWallet() {
     return this.selectedAddress
-      ? this.currentProvider.isWigwam
-      : this.allProviders.some((p) => p.isWigwam);
+      ? this.currentProvider.isNexWallet
+      : this.allProviders.some((p) => p.isNexWallet);
   }
 
   get chainId() {

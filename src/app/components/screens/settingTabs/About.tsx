@@ -15,12 +15,12 @@ const About: FC = () => {
     <div className="flex flex-col items-start pt-3">
       <div className="flex items-center">
         <WigwamLogo className="w-[3.25rem] h-auto" />
-        <span className="text-2xl font-black ml-4">NexWallet</span>
+        <span className="text-2xl font-black ml-4">Wigwam</span>
       </div>
 
       <p className="text-brand-font text-sm mt-6 mb-8 max-w-[20rem]">
-        NexWallet lets you explore DeFi and NFTs in a safer, faster and more
-        modern way.
+        NexWalletlets you explore DeFi and NFTs in a safer, faster and more modern
+        way.
       </p>
 
       <AboutHeader>Version</AboutHeader>

@@ -13,11 +13,11 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          darkaccent: "#0D1311",
-          darkbg: "black", // #13191F
+          darkaccent: "#1b1d1f",
+          darkbg: "#0d0f10", // #13191F
           lightgray: "white",
-          redone: "#3072f8",
-          redtwo: "#0E1314",
+          redone: "#D8FF4D",
+          redtwo: "#1b1d1f",
           dark: "#181A1F",
           darkblue: "#0E1314",
           darklight: "#2A3C3F",
@@ -27,7 +27,7 @@ module.exports = {
           font: "#BCC3C4",
           inactivedark: "#8D9C9E",
           gray: "white",
-          darkgray: "#121212",
+          darkgray: "#1b1d1f",
           placeholder: "#717A7B",
           disabledbackground: "#343434",
           disabledcolor: "#606668",

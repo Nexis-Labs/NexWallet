@@ -50,7 +50,7 @@ const Switcher: FC<SwitcherProps> = ({
         "bg-brand-main/[.05]",
         "rounded-[.625rem]",
         "transition-colors",
-        "hover:bg-brand-main/10 focus-visible:bg-brand-main/10",
+        "hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f]",
         buttonClassName,
       )}
       disabled={disabled}
@@ -74,7 +74,7 @@ const Switcher: FC<SwitcherProps> = ({
             : "w-8 h-[1.5rem] p-[.175rem]",
           "rounded-full",
           "transition-colors",
-          !checked ? "bg-[#93ACAF]" : "bg-[#3072f859]",
+          !checked ? "bg-[#93ACAF]" : "bg-[#1b1d1f]",
         )}
       >
         <SwitchPrimitive.SwitchThumb
@@ -84,7 +84,7 @@ const Switcher: FC<SwitcherProps> = ({
               ? "w-[1.3rem] h-[1.3rem]"
               : "w-[1.1rem] h-[1.1rem]",
             "rounded-full",
-            "bg-[#373B45]",
+            "bg-[#C7FF02]",
             "transition-transform",
             checked &&
               (size === "large"

@@ -43,7 +43,7 @@ export default WalletsList;
 
 const emptyClassBg = classNames(
   "h-3",
-  "rounded bg-brand-main/10",
+  "rounded bg-[#1b1d1f]",
   "transition-colors",
   "group-hover:bg-brand-main/20 group-focus-visible:bg-brand-main/20",
 );
@@ -63,7 +63,7 @@ const EmptyWalletCard: FC = () => (
           "rounded-t-[.625rem]",
           "p-3",
           "transition-colors",
-          "group-hover:bg-brand-main/10 group-focus-visible:bg-brand-main/10",
+          "group-hover:bg-[#1b1d1f] group-focus-visible:bg-[#1b1d1f]",
         )}
       >
         <div
@@ -82,7 +82,7 @@ const EmptyWalletCard: FC = () => (
         className={classNames(
           "flex justify-center items-center",
           "py-1.5",
-          "bg-brand-main/10",
+          "bg-[#1b1d1f]",
           "rounded-b-[.625rem]",
           "transition-colors",
           "group-hover:bg-brand-main/20 group-focus-visible:bg-brand-main/20",

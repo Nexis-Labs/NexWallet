@@ -21,19 +21,19 @@ const stepsContent: TStepContent[] = [
   {
     title: "Trade and explore",
     description:
-      "Instantly trade over 2,500 tokens, connect with hundreds of dApps, and create or sell NFTs in the Web3 world, all through NexWallet",
+      "Instantly trade over 2,500 tokens, connect with hundreds of dApps, and create or sell NFTs in the Web3 world, all through Wigwam",
     image: OnboardingFirstImage,
   },
   {
     title: "Easy access",
     description:
-      "If you can't find a NexWallet button when connecting to a dApp, you can effortlessly connect to NexWallet using MetaMask button instead, as this option is automatically available",
+      "If you can't find a NexWalletbutton when connecting to a dApp, you can effortlessly connect to NexWalletusing MetaMask button instead, as this option is automatically available",
     image: OnboardingSecondImage,
   },
   {
     title: "Always near",
     description:
-      "Pin the NexWallet extension on your browser toolbar for fast access to your tokens and to navigate the Web3 space more efficiently",
+      "Pin the NexWalletextension on your browser toolbar for fast access to your tokens and to navigate the Web3 space more efficiently",
     image: OnboardingThirdImage,
   },
 ];

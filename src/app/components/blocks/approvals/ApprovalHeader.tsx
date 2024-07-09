@@ -102,7 +102,7 @@ const ActSource: FC<ActSourceProps> = ({ source, className }) => {
         cardClassName,
         "cursor-pointer",
         "transition-colors",
-        "hover:bg-brand-main/10 focus-visible:bg-brand-main/10",
+        "hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f]",
         className,
       )}
     >

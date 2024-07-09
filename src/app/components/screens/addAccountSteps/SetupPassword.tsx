@@ -68,7 +68,7 @@ const SetupPassword = memo(() => {
               userId: nanoid(),
             });
 
-            trackEvent(TEvent.SetupWigwam);
+            trackEvent(TEvent.SetupNexWallet);
           }
 
           setAccModalOpened([false]);
@@ -182,7 +182,7 @@ const SetupPassword = memo(() => {
                     title="Analytics"
                     description={
                       <>
-                        Help us make NexWallet better.
+                        Help us make NexWalletbetter.
                         <br />I agree to the{" "}
                         <a
                           href="https://wigwam.app/privacy"

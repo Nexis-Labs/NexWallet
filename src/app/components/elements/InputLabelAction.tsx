@@ -13,7 +13,7 @@ const InputLabelAction: FC<InputLabelAction> = ({
     type={type}
     className={classNames(
       "py-1 px-3",
-      "bg-brand-main/10",
+      "bg-[#1b1d1f]",
       "rounded-md",
       "text-xs font-bold",
       "transition-colors",

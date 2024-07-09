@@ -35,7 +35,7 @@ const AddTokenBanner = memo<NullStateProps>(
             "text-sm text-brand-inactivelight text-left",
             "cursor-pointer",
             "transition-colors",
-            "hover:bg-brand-main/10 focus-visible:bg-brand-main/10",
+            "hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f]",
           )}
           onClick={focusSearchInput}
         >

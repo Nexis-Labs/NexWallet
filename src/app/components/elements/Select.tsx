@@ -183,9 +183,9 @@ function Select<T extends string | ReactElement, U extends string | number>({
             size === "small" && "py-1.5 pl-3 pr-2 text-xs rounded-lg",
             "font-bold",
             "bg-brand-main/5",
-            currentItem && "hover:bg-brand-main/10",
+            currentItem && "hover:bg-[#1b1d1f]",
             {
-              "!bg-brand-main/10": opened,
+              "!bg-[#1b1d1f]": opened,
             },
             "transition-colors",
             currentItemClassName,

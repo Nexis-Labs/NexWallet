@@ -95,29 +95,36 @@ const ChooseAddAccountWay = memo<{ onLedgerOpened?: () => void }>(
     );
 
     return (
-      <>
+      <div
+        className={classNames(
+          "w-full mx-auto max-w-lg",
+          "rounded-md",
+          "bg-[#1b1d1f]",
+        )}
+      >
         <AddAccountHeader
           className="mb-12"
           description={
-            isInitialWallet ? "Join the future of finance with NexWallet" : null
+            isInitialWallet
+              ? "Join the future of Web3 & privacy with NexWallet"
+              : null
           }
         >
+          <div className="mt-6">
           {isInitialWallet ? "Let’s start your journey" : "Add more wallets"}
+          </div>
         </AddAccountHeader>
-
         <div
           className={classNames(
             "w-full mx-auto max-w-lg",
-            "rounded-xl",
-            "bg-white bg-opacity-5",
+            "rounded-md",
+            "bg-[#1b1d1f] bg-opacity-5",
             "p-3",
           )}
         >
           {items.map((item, i, arr) => {
             if (item === "divider") {
-              return (
-                <div key={i} className="h-px w-full bg-brand-main/[.07] my-4" />
-              );
+              return <div key={i} className="h-px w-full bg-[#1b1d1f] my-4" />;
             }
 
             const { title, description, action } = item;
@@ -137,8 +144,8 @@ const ChooseAddAccountWay = memo<{ onLedgerOpened?: () => void }>(
                   "w-full p-2",
                   !last && "mb-3",
                   "flex items-stretch",
-                  first && "bg-white bg-opacity-5",
-                  "rounded-lg",
+                  first && "bg-[#1b1d1f]",
+                  "rounded-md",
                   "transition-colors",
                   "hover:bg-brand-main/5",
                   "text-left",
@@ -187,7 +194,7 @@ const ChooseAddAccountWay = memo<{ onLedgerOpened?: () => void }>(
             );
           })}
         </div>
-      </>
+      </div>
     );
   },
 );

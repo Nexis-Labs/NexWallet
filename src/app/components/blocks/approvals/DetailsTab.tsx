@@ -294,7 +294,7 @@ const FeeButton: FC<FeeButton> = ({
         "py-3 pr-2 pl-4 mb-3",
         "bg-brand-main/5",
         "transition-colors",
-        "hover:bg-brand-main/10",
+        "hover:bg-[#1b1d1f]",
       )}
       onClick={onClick}
     >

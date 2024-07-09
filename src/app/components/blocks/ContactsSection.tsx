@@ -143,7 +143,7 @@ const ContactsSection: FC = () => {
 export default ContactsSection;
 
 const emptyClassBg = classNames(
-  "rounded bg-brand-main/10",
+  "rounded bg-[#1b1d1f]",
   "transition-colors",
   "group-hover:bg-brand-main/20 group-focus-visible:bg-brand-main/20",
 );

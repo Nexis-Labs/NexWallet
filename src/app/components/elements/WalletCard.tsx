@@ -24,6 +24,7 @@ const WalletCard: FC<WalletCardProps> = ({ account, className, onClick }) => {
     "rounded-[.625rem]",
     "flex items-stretch",
     "text-left",
+    "bg-#171717",
   );
 
   const content = (
@@ -69,7 +70,8 @@ const WalletCard: FC<WalletCardProps> = ({ account, className, onClick }) => {
           "group",
           "cursor-pointer",
           "transition-colors",
-          "hover:bg-brand-main/10 focus-visible:bg-brand-main/10",
+          "bg:#171717",
+          "hover:bg-brand-main focus-visible:bg-[#1b1d1f]",
           className,
         )}
         onClick={onClick}

@@ -136,7 +136,7 @@ const WalletTab: FC<WalletTabProps> = ({
         "flex items-stretch",
         "text-left",
         "transition-colors",
-        active && "bg-brand-main/10",
+        active && "bg-[#1b1d1f]",
         !active && "hover:bg-brand-main/5",
         className,
       )}

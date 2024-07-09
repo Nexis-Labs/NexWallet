@@ -88,8 +88,8 @@ export function FlipWordsDemo() {
   const words = ["fastest", "reliable", "scalable", "cheapest"];
 
   return (
-    <div className="h-[20rem] flex justify-center items-center px-4">
-      <div className="text-4xl mx-auto font-normal text-neutral-600 dark:text-neutral-400">
+    <div className="h-[20rem] flex justify-center items-center px-15">
+      <div className="text-2xl mx-auto font-normal text-neutral-600 dark:text-neutral-400">
         Use the
         <FlipWords words={words} /> <br />
         EVM compatible chain!

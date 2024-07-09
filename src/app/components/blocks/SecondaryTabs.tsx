@@ -69,7 +69,7 @@ const SecondaryItem: FC<
         "rounded-[.625rem]",
         "cursor-pointer",
         "group",
-        isActive && "bg-brand-main/10",
+        isActive && "bg-[#1b1d1f]",
         !isActive && "hover:bg-brand-main/5",
         className,
       )}

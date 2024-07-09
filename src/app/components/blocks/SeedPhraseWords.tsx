@@ -39,7 +39,7 @@ const SeedPhraseWords = memo(({ seedPhrase }: SeedPhraseWordsProps) => {
         className={classNames(
           "relative w-full flex flex-wrap",
           "rounded-xl",
-          "bg-white bg-opacity-5",
+          "bg-[#0d0f10]",
           "p-3",
         )}
       >
@@ -73,7 +73,7 @@ const SeedPhraseWords = memo(({ seedPhrase }: SeedPhraseWordsProps) => {
             "absolute z-10",
             "inset-0 box-border",
             "rounded-[.5625rem]",
-            "bg-[#1E2C31] bg-opacity-75",
+            "bg-[#0d0f10]",
             "border border-brand-main/10",
             "flex flex-col items-center justify-center",
             "transition-opacity",

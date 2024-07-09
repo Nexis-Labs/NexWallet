@@ -20,7 +20,7 @@ const AddAccountContinueButton: FC<
       "flex justify-center items-center",
       "mx-auto",
       "bg-brand-dark/20",
-      "backdrop-blur-[10px]",
+      // "backdrop-blur-[10px]",
       IS_FIREFOX && "!bg-addaccountcontinue",
       "before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2",
       "before:w-full before:max-w-[56.25rem] before:h-px",

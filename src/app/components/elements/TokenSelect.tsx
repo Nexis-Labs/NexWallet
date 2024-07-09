@@ -367,7 +367,7 @@ const NFTItem: FC<{
             decimals={0}
             threeDots={false}
             asSpan
-            className="py-0.5 px-2.5 bg-brand-main/20 rounded mr-auto flex items-center"
+            className="py-0.5 px-2.5bg-[#1b1d1f] rounded mr-auto flex items-center"
           />
         )}
       </span>

@@ -67,7 +67,7 @@ const NetworksButton = ({
         type="button"
         className={classNames(
           "w-full h-full !min-w-0",
-          "bg-brand-main/5 hover:bg-brand-main/10 focus-visible:bg-brand-main/10",
+          "bg-brand-main/5 hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f]",
           "transition-colors",
           "rounded-[.625rem]",
           "px-3 py-2",
@@ -425,8 +425,8 @@ const NetworkListItem = memo(
           size === "large" ? "p-3" : "px-3 py-2",
           "border border-transparent",
           "rounded-lg",
-          "aria-selected:bg-brand-main/10",
-          chainId === net.chainId && "!border-blue-600",
+          "aria-selected:bg-[#1b1d1f]",
+          chainId === net.chainId && "!border-[#ffffff]/10",
           "aria-selected:cursor-pointer",
         )}
         style={style}

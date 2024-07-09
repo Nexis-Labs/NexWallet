@@ -102,7 +102,7 @@ const AssetCard = memo(
               "cursor-default",
               "group",
               "transition",
-              "hover:bg-brand-main/10 focus-visible:bg-brand-main/10 !cursor-pointer",
+              "hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f] !cursor-pointer",
               disabled && "opacity-60",
               "hover:opacity-100",
               className,
