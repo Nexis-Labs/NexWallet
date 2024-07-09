@@ -19,8 +19,8 @@ const About: FC = () => {
       </div>
 
       <p className="text-brand-font text-sm mt-6 mb-8 max-w-[20rem]">
-        NexWalletlets you explore DeFi and NFTs in a safer, faster and more modern
-        way.
+        NexWalletlets you explore DeFi and NFTs in a safer, faster and more
+        modern way.
       </p>
 
       <AboutHeader>Version</AboutHeader>

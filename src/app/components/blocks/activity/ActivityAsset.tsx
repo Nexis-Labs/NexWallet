@@ -1009,9 +1009,9 @@ const TxOptionsDropdown = memo(
                       <>
                         <li>
                           This will hide this transaction{" "}
-                          <b>only inside the NexWalletapplicaiton</b>. This means
-                          you should only proceed if you are certain that the
-                          transaction was lost.
+                          <b>only inside the NexWalletapplicaiton</b>. This
+                          means you should only proceed if you are certain that
+                          the transaction was lost.
                         </li>
                         <li>
                           All pending transactions above will also be hidden.

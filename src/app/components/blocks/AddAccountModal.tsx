@@ -129,7 +129,9 @@ const AddAccountModal = memo(() => {
             autoPlay
             loop
             muted
-            className={classNames("absolute inset-0 w-full h-full object-cover")}
+            className={classNames(
+              "absolute inset-0 w-full h-full object-cover",
+            )}
           >
             <source src="/video.mp4" type="video/mp4" />
             Your browser does not support the video tag.

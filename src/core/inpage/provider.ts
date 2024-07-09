@@ -32,7 +32,7 @@ const stateUpdatedType = Symbol();
 type GatewayPayload<T = any> = JsonRpcResponse<T> | JsonRpcNotification<T>;
 
 export class InpageProvider extends Emitter {
-  isNexWallet= true;
+  isNexWallet = true;
   isMetaMask = true;
   autoRefreshOnNetworkChange = false;
 
