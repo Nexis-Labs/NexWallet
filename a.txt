@@ -1,0 +1,52 @@
+nexis-validator \
+--ledger ~/bootstrap-validator/ledger \
+--snapshot-interval-slots 200 \
+--identity ~/bootstrap-validator-keypair.json \
+--vote-account ~/bootstrap-vote-keypair.json \
+--no-poh-speed-test \
+--no-os-network-limits-test \
+--no-wait-for-vote-to-start-leader \
+--full-rpc-api \
+--rpc-bind-address 0.0.0.0 \
+--rpc-port 8899 \
+--gossip-host 185.26.8.199 \
+--gossip-port 8000 \
+--log - \
+--enable-cpi-and-log-storage \
+--rpc-pubsub-enable-block-subscription \
+--rpc-pubsub-enable-vote-subscription \
+--evm-state-archive ~/bootstrap-validator/evm-state-archive \
+--evm-state ~/bootstrap-validator/evm-state \
+--enable-rpc-transaction-history
+
+
+nexis-genesis \
+        --enable-warmup-epochs \
+        --bootstrap-validator ~/bootstrap-validator-keypair.json ~/bootstrap-vote-keypair.json ~/bootstrap-stake-keypair.json \
+        --bootstrap-validator-lamports 5000000000000000 \
+        --bootstrap-validator-stake-lamports 50000000000000 \
+        --faucet-lamports 1000000000000000000 \
+        --faucet-pubkey ~/faucet-keypair.json \
+        --ledger ~/bootstrap-validator/ledger/ \
+        --cluster-type development \
+        --vote-commission-percentage 8 \
+        --slots-per-epoch 432000 \
+        --evm-chain-id 2370
+
+Creation time: 2024-06-17T07:51:24+00:00
+Cluster type: Development
+Genesis hash: 36Bat5Ju73rUah1xtq8dgaFG7MTYJvVa41VJN5Y1Bi5z
+Shred version: 24034
+Ticks per slot: 64
+Hashes per tick: Some(7672)
+Target tick duration: 6.25ms
+Slots per epoch: 432000
+Warmup epochs: enabled
+Slots per year: 78892314.984
+Inflation { initial: 0.08, terminal: 0.015, taper: 0.15, foundation: 0.05, foundation_term: 7.0, __unused: 0.0 }
+Rent { lamports_per_byte_year: 3480, exemption_threshold: 2.0, burn_percent: 50 }
+FeeRateGovernor { lamports_per_signature: 9500, target_lamports_per_signature: 10000, target_signatures_per_slot: 20000, min_lamports_per_signature: 5000, max_lamports_per_signature: 100000, burn_percent: 50 }
+Capitalization: 1005050000.141288 NZT in 125 accounts
+Native instruction processors: []
+Rewards pool: {}
+EVM chain id: 2370
