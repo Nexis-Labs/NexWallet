@@ -1,0 +1,31 @@
+@keyframes gradient-border {
+  0% {
+    border-image: linear-gradient(
+        45deg,
+        rgba(56, 189, 248, 0.6),
+        rgba(16, 185, 129, 0.6)
+      )
+      1;
+  }
+  50% {
+    border-image: linear-gradient(
+        45deg,
+        rgba(16, 185, 129, 0.6),
+        rgba(56, 189, 248, 0.6)
+      )
+      1;
+  }
+  100% {
+    border-image: linear-gradient(
+        45deg,
+        rgba(56, 189, 248, 0.6),
+        rgba(16, 185, 129, 0.6)
+      )
+      1;
+  }
+}
+
+.animate-gradient-border {
+  border-image-slice: 1;
+  animation: gradient-border 3s infinite;
+}
