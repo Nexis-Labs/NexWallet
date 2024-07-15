@@ -34,6 +34,7 @@ const NetworksList: FC = () => {
   );
 
   const allNetworks = useMemo(() => {
+    console.log("balancesMap===",balancesMap);
     if (!allNetworksPure || !balancesMap) return [];
     if (balancesMap.size === 0) return allNetworksPure;
 
@@ -47,6 +48,8 @@ const NetworksList: FC = () => {
 
   const currentNetwork =
     allNetworks.find((n) => n.chainId === chainId) ?? allNetworks[0];
+
+  console.log("currentNetwork====",currentNetwork);
 
   const { shownNetworks, dropdownNetworks } = useMemo(() => {
     const tempNetworks = allNetworks.slice(0, SHOWN_NETWORKS_AMOUNT);

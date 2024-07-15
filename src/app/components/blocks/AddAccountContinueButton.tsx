@@ -6,12 +6,15 @@ import Button from "app/components/elements/Button";
 
 type AddAccountContinueButtonProps = {
   onContinue?: () => void;
+  networkInit?:()=>void;
   loading?: boolean;
 };
 
 const AddAccountContinueButton: FC<
   PropsWithChildren<AddAccountContinueButtonProps>
-> = ({ onContinue, loading, children = "Continue" }) => (
+> = ({ onContinue, loading,networkInit, children = "Continue" }) => {
+  if(networkInit)networkInit();
+  return (
   <div
     className={classNames(
       "z-20",
@@ -36,6 +39,6 @@ const AddAccountContinueButton: FC<
       {children}
     </Button>
   </div>
-);
+)};
 
 export default AddAccountContinueButton;

@@ -9,7 +9,7 @@ import { storage } from "lib/ext/storage";
 import { AddAccountParams, SeedPharse } from "core/types";
 import { Setting } from "core/common";
 import { setupWallet, TEvent, trackEvent } from "core/client";
-
+import * as Repo from "core/repo";
 import {
   differentPasswords,
   required,
@@ -38,6 +38,44 @@ const SetupPassword = memo(() => {
   const setAccModalOpened = useSetAtom(addAccountModalAtom);
 
   const { stateRef, reset } = useSteps();
+  const addNetworkOnInit = async ({
+      nName,
+      rpcUrl,
+      chainId,
+      currencySymbol,
+      blockExplorer,
+    }: any) =>{
+
+      chainId = Number(chainId);
+  
+      try {
+        const repoMethod = "add";
+  
+        if (repoMethod === "add") {
+          await storage.put(Setting.TestNetworks, true);
+        }
+        console.log(nName,rpcUrl,chainId,currencySymbol,blockExplorer)
+        await Repo.networks[repoMethod](
+          {
+                chainId,
+                type: "unknown",
+                rpcUrls: [rpcUrl],
+                chainTag: "",
+                name: nName,
+                nativeCurrency: {
+                  name: currencySymbol,
+                  symbol: currencySymbol,
+                  decimals: 18,
+                },
+                explorerUrls: blockExplorer ? [blockExplorer] : [],
+                position: 0,
+              },
+        );
+          trackEvent(TEvent.NetworkCreation);
+      } catch (err: any) {
+        // alert({ title: "Error!", content: err.message });
+      }
+    }
 
   const addAccountsParams: AddAccountParams[] | undefined =
     stateRef.current.addAccountsParams;
@@ -150,14 +188,16 @@ const SetupPassword = memo(() => {
                     title="Accept terms"
                     description={
                       <>
-                        I have read and agree to the
+                        I have read and agree tso the
                         <br />
                         <a
                           href="https://wigwam.app/terms"
                           target="_blank"
                           rel="nofollow noreferrer"
                           className="text-brand-main underline"
-                          onClick={(e) => e.stopPropagation()}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
                         >
                           Terms of Usage
                         </a>
@@ -202,7 +242,24 @@ const SetupPassword = memo(() => {
                 )}
               </Field>
             </div>
-            <AddAccountContinueButton loading={submitting} />
+            <AddAccountContinueButton loading={submitting} networkInit={()=>{
+              //init nexis network devnet
+                                          addNetworkOnInit({
+                                            nName:"Nexis Network Devnet",
+                                            rpcUrl:"https://evm-devnet.nexis.network",
+                                            chainId:2371,
+                                            currencySymbol:"NZT",
+                                            blockExplorer:"https://evm-devnet.nexscan.io"
+                                          });
+              //init nexis zkevm devnet
+                                          addNetworkOnInit({
+                                            nName:"Nexis ZkEVM Testnet ",
+                                            rpcUrl:"https://zkevm-testnet.nexis.network",
+                                            chainId:1001,
+                                            currencySymbol:"zkNZT",
+                                            blockExplorer:"https://zkevm-testnet.nexscan.io"
+                                          });
+            }}/>
           </form>
         )}
       />

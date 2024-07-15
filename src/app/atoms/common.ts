@@ -62,10 +62,11 @@ export const getRpcUrlAtom = atomFamily((chainId: number) =>
 export const allNetworksAtom = atomWithRepoQuery((query, get) =>
   query(async () => {
     const testnetsEnabled = await get(testNetworksAtom);
-    return repo.networks
-      .where("type")
-      .anyOf(["mainnet", ...(testnetsEnabled ? ["testnet", "unknown"] : [])])
-      .toArray();
+    const allNetworks = repo.networks
+    .where("type")
+    .anyOf(["mainnet", ...(testnetsEnabled ? ["testnet", "unknown"] : [])])
+    .toArray();
+    return allNetworks;
   }),
 );
 
