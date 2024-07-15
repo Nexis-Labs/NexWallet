@@ -19,7 +19,7 @@ const About: FC = () => {
       </div>
 
       <p className="text-brand-font text-sm mt-6 mb-8 max-w-[20rem]">
-        NexWalletlets you explore DeFi and NFTs in a safer, faster and more modern
+        NexWallet lets you explore DeFi and NFTs in a safer, faster and more modern
         way.
       </p>
 
@@ -137,27 +137,27 @@ const usefulLinks = [
 
 const mediaLinks = [
   {
-    href: "https://t.me/wigwamapp",
+    href: "https://t.me/Nexis_Network",
     label: "Telegram",
     Icon: TelegramIcon,
   },
   {
-    href: "https://twitter.com/wigwam_app",
+    href: "https://twitter.com/Nexis_Network",
     label: "Twitter",
     Icon: TwitterIcon,
   },
   {
-    href: "https://wigwamapp.medium.com",
+    href: "https://medium.com/@nexisfoundation",
     label: "Medium",
     Icon: MediumIcon,
   },
   {
-    href: "https://github.com/wigwamapp",
+    href: "https://github.com/nexis-network",
     label: "Github",
     Icon: GithubIcon,
   },
   {
-    href: "https://discord.gg/MAG2fnSqSK",
+    href: "https://discord.com/invite/BP8P6EKpZm",
     label: "Discord",
     Icon: DiscordIcon,
   },

@@ -3,7 +3,7 @@ import type { FC, ReactNode } from "react";
 
 const ARTICLE_LINK =
   "https://wigwam.app/blog/find-a-bug-earn-a-reward-with-wigwam-wallet";
-const DS_CHANNEL = "https://discord.gg/MAG2fnSqSK";
+const DS_CHANNEL = "https://discord.com/invite/BP8P6EKpZm";
 
 const Title: FC<{ className?: string }> = ({ className }) => {
   return (

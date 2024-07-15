@@ -39,17 +39,23 @@ const Unlock: FC<UnlockProps> = ({ isApproval }) => {
               )}
             />
           )}
-          <EvervaultCard
-            alwaysDisplayOn={true}
-            child={
-              <ProfilePreview
-                theme={isPopup ? "extrasmall" : "large"}
-                profile={currentProfile}
-                className={classNames(isPopup ? "w-[8.25rem]" : "w-[16rem]")}
-              />
-            }
-            isHoverNeeded={false}
-          />
+          <div
+            className={classNames(
+              "not-prose block rounded-lg border border-[#ffffff]/10 bg-[#ffffff]/3 text-md text-card-foreground shadow-md transition-colors relative overflow-hidden hover:bg-accent/80 hover:before:absolute hover:before:inset-0 hover:before:content-[''] hover:before:rounded-[inherit] hover:before:bg-gradient-to-br hover:before:from-transparent hover:before:via-transparent hover:before:transition-opacity hover:before:duration-700 hover:before:opacity-0 hover:hover:before:opacity-100 group",
+            )}
+          >
+            <EvervaultCard
+              alwaysDisplayOn={false}
+              child={
+                <ProfilePreview
+                  theme={isPopup ? "extrasmall" : "large"}
+                  profile={currentProfile}
+                  className={classNames(isPopup ? "w-[8.25rem]" : "w-[16rem]")}
+                />
+              }
+              isHoverNeeded={true}
+            />
+          </div>
         </div>
       </div>
       <PasswordForm

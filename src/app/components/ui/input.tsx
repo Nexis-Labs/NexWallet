@@ -6,7 +6,7 @@ import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  actions: any;
+  actions?: any;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -30,7 +30,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           background: useMotionTemplate`
         radial-gradient(
           ${visible ? radius + "px" : "0px"} circle at ${mouseX}px ${mouseY}px,
-          var(color:#C5FF4A),
+            #c7ff02,
           transparent 80%
         )
       `,
@@ -55,7 +55,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             {...props}
           />
-          <div className="ml-8">{actions}</div>
+          {actions && <div className="ml-8">{actions}</div>}
         </div>
       </motion.div>
     );

@@ -195,7 +195,7 @@ const AddAccountModal = memo(() => {
                 {isInitial && (
                   <div
                     className={classNames(
-                      "absolute inset-0 rounded-md overflow-hidden",
+                      // "absolute inset-0 rounded-md overflow-hidden",
                       // " backdrop-blur-[10px]",
                       IS_FIREFOX && "brandbg-large-modal",
                     )}

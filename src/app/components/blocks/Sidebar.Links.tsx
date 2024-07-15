@@ -140,11 +140,11 @@ const useSidebarLinks = () => {
             page: "dashboard",
           }),
       },
-      {
-        route: Page.Rewards,
-        label: "Rewards",
-        Icon: RewardsIcon,
-      },
+      // {
+      //   route: Page.Rewards,
+      //   label: "Rewards",
+      //   Icon: RewardsIcon,
+      // },
     ];
   }, []);
 

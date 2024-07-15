@@ -5,7 +5,7 @@ import { ReactComponent as TelegramIcon } from "app/icons/telegram.svg";
 // import { ReactComponent as DiscordIcon } from "app/icons/discord.svg";
 
 const TELEGRAM = "https://t.me/Nexis_Network/682434";
-// const DISCORD = "https://discord.gg/MAG2fnSqSK";
+// const DISCORD = "https://discord.com/invite/BP8P6EKpZm";
 const LANDING = "https://nexis.network/";
 const TIPS = "https://nexis.network/safety-tips";
 
