@@ -16,7 +16,7 @@ import {
 } from "core/types/rpc";
 import {
   JSONRPC,
-  WIGWAM_STATE,
+  NEX_WALLET_STATE,
   AUTHORIZED_RPC_METHODS,
   STATE_RPC_METHODS,
 } from "core/common/rpc";
@@ -55,9 +55,9 @@ export class InpageProvider extends Emitter {
   // https://eips.ethereum.org/EIPS/eip-6963
   // https://eips.ethereum.org/EIPS/eip-5749
   info: EIP6963ProviderInfo = Object.freeze({
-    name: "Wigwam",
-    uuid: `wigwam-${process.env.BUILD_ID}`,
-    rdns: "com.wigwam.wallet",
+    name: "NexWallet",
+    uuid: `nexwallet-${process.env.BUILD_ID}`,
+    rdns: "network.nexis.wallet",
     icon: ICON_SVG_BASE64,
     description: "NexWallet— Web 3.0 Wallet",
   });
@@ -93,7 +93,7 @@ export class InpageProvider extends Emitter {
 
   #listenNotifications() {
     this.on(gatewayEventType, (evt?: JsonRpcNotification<unknown>) => {
-      if (evt?.method === WIGWAM_STATE) {
+      if (evt?.method === NEX_WALLET_STATE) {
         const { chainId, accountAddress, mmCompatible } = evt.params as any;
 
         this.mmCompatible = mmCompatible;

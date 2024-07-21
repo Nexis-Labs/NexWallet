@@ -23,9 +23,9 @@ import * as repo from "core/repo";
 import { Setting } from "core/common";
 import {
   JSONRPC,
-  WIGWAM_FAVICON,
-  WIGWAM_PHISHING_WARNING,
-  WIGWAM_STATE,
+  NEX_WALLET_FAVICON,
+  NEX_WALLET_PHISHING_WARNING,
+  NEX_WALLET_STATE,
 } from "core/common/rpc";
 import { getPageOrigin, wrapPermission } from "core/common/permissions";
 
@@ -61,7 +61,7 @@ export function startPageServer() {
     checkForPhishing(hostname, () => {
       pagePorter.notify(port, {
         jsonrpc: JSONRPC,
-        method: WIGWAM_PHISHING_WARNING,
+        method: NEX_WALLET_PHISHING_WARNING,
       });
     });
 
@@ -155,7 +155,7 @@ export function startPageServer() {
 
     pagePorter.notify(port, {
       jsonrpc: JSONRPC,
-      method: WIGWAM_STATE,
+      method: NEX_WALLET_STATE,
       params,
     });
   };
@@ -170,7 +170,7 @@ async function handlePageRequest(
 
   const { id, jsonrpc, method, params } = ctx.data;
 
-  if (method === WIGWAM_FAVICON) {
+  if (method === NEX_WALLET_FAVICON) {
     if (Array.isArray(params) && typeof params[0] === "string") {
       faviconCache.set(ctx.portId, params[0]);
     }

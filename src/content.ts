@@ -1,7 +1,7 @@
 import { PorterClient } from "lib/ext/porter/client";
 
 import { PorterChannel } from "core/types/shared";
-import { JSONRPC, DISCONNECT_ERROR, WIGWAM_FAVICON } from "core/common/rpc";
+import { JSONRPC, DISCONNECT_ERROR, NEX_WALLET_FAVICON } from "core/common/rpc";
 import { shouldInject } from "core/inpage/shouldInject";
 import { InpageProtocol } from "core/inpage/protocol";
 
@@ -17,7 +17,7 @@ function initMsgGateway() {
   porter.onFullyDisconnect = () => {
     if (
       process.env.NODE_ENV === "development" &&
-      process.env.WIGWAM_DEV_ACTIVE_TAB_RELOAD === "true"
+      process.env.NEX_WALLET_DEV_ACTIVE_TAB_RELOAD === "true"
     ) {
       // Wait for the fresh content script to be loaded
       // via browser.scripting.registerContentScripts()
@@ -60,7 +60,7 @@ function initMsgGateway() {
       if (favIconUrl) {
         porter.sendOneWayMessage({
           jsonrpc: JSONRPC,
-          method: WIGWAM_FAVICON,
+          method: NEX_WALLET_FAVICON,
           params: [favIconUrl],
         });
       }

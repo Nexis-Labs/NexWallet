@@ -6,7 +6,7 @@ import { Setting, AnalyticsState } from "core/common/settings";
 
 export enum TEvent {
   SetupWallet = "WALLET_SETUPED",
-  SetupNexWallet= "WIGWAM_SETUPED",
+  SetupNexWallet= "NEX_WALLET_SETUPED",
   ProfileCreation = "PROFILE_CREATED",
   ProfileUpdate = "PROFILE_UPDATED",
   NetworkChange = "NETWORK_CHANGED",
@@ -45,7 +45,7 @@ export const trackEvent = async (
 export const isTrackingEnabled = () => getAmplitude().then(Boolean);
 
 const getAmplitude = memoizeOne(async () => {
-  const apiKey = process.env.WIGWAM_ANALYTICS_API_KEY;
+  const apiKey = process.env.NEX_WALLET_ANALYTICS_API_KEY;
   const state = await storage.fetchForce<AnalyticsState>(Setting.Analytics);
 
   if (!apiKey || !state?.enabled) return null;

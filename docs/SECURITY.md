@@ -1,6 +1,6 @@
 # NexWalletWeb Extension Wallet - Security Guidelines
 
-At Wigwam, we prioritize the security and privacy of our users' digital assets and personal information. This document outlines the security measures and features we have implemented to ensure a secure web3 wallet experience.
+At NexWallet, we prioritize the security and privacy of our users' digital assets and personal information. This document outlines the security measures and features we have implemented to ensure a secure web3 wallet experience.
 
 ### 1. Encryption
 
@@ -114,7 +114,7 @@ NexWalletis committed to transparency and is open source, allowing the community
 
 #### 01/15/2024 Pentest Security Audit by [Halborn](https://halborn.com/)
 
-**Report:** [Wigwam_Pentest_Report_Halborn_15_01_2024.pdf](../audit/Wigwam_Pentest_Report_Halborn_15_01_2024.pdf)
+**Report:** [NexWallet_Pentest_Report_Halborn_15_01_2024.pdf](../audit/NexWallet_Pentest_Report_Halborn_15_01_2024.pdf)
 
 **Summary:** No critical issues were identified, but some security risks were found. Finally, all issues were successfully resolved.
 

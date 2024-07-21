@@ -7,14 +7,14 @@ on:
       - dev
 
 env:
-  WIGWAM_STATIC_CDN: ${{ secrets.WIGWAM_STATIC_CDN }}
-  WIGWAM_INDEXER_API: ${{ secrets.WIGWAM_INDEXER_API }}
-  WIGWAM_INDEXER_API_KEY: ${{ secrets.WIGWAM_INDEXER_API_KEY }}
-  WIGWAM_INFURA_API_KEY: ${{ secrets.WIGWAM_INFURA_API_KEY }}
-  WIGWAM_ANALYTICS_API_KEY: ${{ secrets.TEST_WIGWAM_ANALYTICS_API_KEY }}
-  WIGWAM_OPEN_LOGIN_CLIENT_ID: ${{ secrets.TEST_WIGWAM_OPEN_LOGIN_CLIENT_ID }}
-  WIGWAM_ON_RAMP_API_KEY: ${{ secrets.WIGWAM_ON_RAMP_API_KEY }}
-  WIGWAM_ON_RAMP_API_URL: ${{ secrets.WIGWAM_ON_RAMP_API_URL }}
+  NEX_WALLET_STATIC_CDN: ${{ secrets.NEX_WALLET_STATIC_CDN }}
+  NEX_WALLET_INDEXER_API: ${{ secrets.NEX_WALLET_INDEXER_API }}
+  NEX_WALLET_INDEXER_API_KEY: ${{ secrets.NEX_WALLET_INDEXER_API_KEY }}
+  NEX_WALLET_INFURA_API_KEY: ${{ secrets.NEX_WALLET_INFURA_API_KEY }}
+  NEX_WALLET_ANALYTICS_API_KEY: ${{ secrets.TEST_NEX_WALLET_ANALYTICS_API_KEY }}
+  NEX_WALLET_OPEN_LOGIN_CLIENT_ID: ${{ secrets.TEST_NEX_WALLET_OPEN_LOGIN_CLIENT_ID }}
+  NEX_WALLET_ON_RAMP_API_KEY: ${{ secrets.NEX_WALLET_ON_RAMP_API_KEY }}
+  NEX_WALLET_ON_RAMP_API_URL: ${{ secrets.NEX_WALLET_ON_RAMP_API_URL }}
 
 jobs:
   newcode:
@@ -48,7 +48,7 @@ jobs:
       - uses: gacts/github-slug@v1
         id: slug
         with:
-          to-slug: ${{ github.event.pull_request.title }} Wigwam
+          to-slug: ${{ github.event.pull_request.title }} NexWallet
 
       - name: Export app build
         uses: actions/upload-artifact@v4

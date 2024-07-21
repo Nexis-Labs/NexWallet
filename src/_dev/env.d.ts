@@ -10,18 +10,18 @@ declare namespace NodeJS {
     readonly VERSION: string;
     readonly BUILD_ID: string;
     // NexWalletspecific
-    readonly WIGWAM_WEBSITE_ORIGIN?: string;
-    readonly WIGWAM_STATIC_CDN?: string;
-    readonly WIGWAM_INDEXER_API?: string;
-    readonly WIGWAM_INDEXER_API_KEY?: string;
-    readonly WIGWAM_INFURA_API_KEY?: string;
-    readonly WIGWAM_ANALYTICS_API_KEY?: string;
-    readonly WIGWAM_OPEN_LOGIN_CLIENT_ID?: string;
+    readonly NEX_WALLET_WEBSITE_ORIGIN?: string;
+    readonly NEX_WALLET_STATIC_CDN?: string;
+    readonly NEX_WALLET_INDEXER_API?: string;
+    readonly NEX_WALLET_INDEXER_API_KEY?: string;
+    readonly NEX_WALLET_INFURA_API_KEY?: string;
+    readonly NEX_WALLET_ANALYTICS_API_KEY?: string;
+    readonly NEX_WALLET_OPEN_LOGIN_CLIENT_ID?: string;
     // Dev
-    readonly WIGWAM_DEV_UNLOCK_PASSWORD?: string;
-    readonly WIGWAM_DEV_ACTIVE_TAB_RELOAD?: string;
-    readonly WIGWAM_DEV_ELEMENTS_SPACING?: string;
-    readonly WIGWAM_DEV_BLOCK_TX_SEND?: string;
+    readonly NEX_WALLET_DEV_UNLOCK_PASSWORD?: string;
+    readonly NEX_WALLET_DEV_ACTIVE_TAB_RELOAD?: string;
+    readonly NEX_WALLET_DEV_ELEMENTS_SPACING?: string;
+    readonly NEX_WALLET_DEV_BLOCK_TX_SEND?: string;
   }
 }
 

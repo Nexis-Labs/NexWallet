@@ -3,8 +3,8 @@ import { InpageProvider } from "core/inpage/provider";
 import { UniversalInpageProvider } from "core/inpage/universalProvider";
 import {
   JSONRPC,
-  WIGWAM_PHISHING_WARNING,
-  WIGWAM_STATE,
+  NEX_WALLET_PHISHING_WARNING,
+  NEX_WALLET_STATE,
 } from "core/common/rpc";
 import { MetaMaskCompatibleMode } from "core/types/shared";
 
@@ -13,7 +13,7 @@ const wigwam = new InpageProvider(inpageProto);
 
 const isMetaMaskModeEnabled = new Promise<boolean>((res) => {
   const unsub = inpageProto.subscribe((payload) => {
-    if (payload?.jsonrpc === JSONRPC && payload?.method === WIGWAM_STATE) {
+    if (payload?.jsonrpc === JSONRPC && payload?.method === NEX_WALLET_STATE) {
       const metamaskModeEnabled =
         payload.params.mmCompatible !== MetaMaskCompatibleMode.Off;
 
@@ -138,7 +138,7 @@ function warnIfPhishing() {
   const unsub = inpageProto.subscribe((payload) => {
     if (
       payload?.jsonrpc === JSONRPC &&
-      payload?.method === WIGWAM_PHISHING_WARNING
+      payload?.method === NEX_WALLET_PHISHING_WARNING
     ) {
       unsub();
 

@@ -76,7 +76,7 @@ You can also find documentation for specific modules within the source code.
 ### Get the source code
 
 ```bash
-git clone git@github.com:wigwamapp/local-wigwam.git wigwam
+git clone git@github.com:nexis-network/nexwallet.git nexwallet
 ```
 
 ### Install app dependencies
@@ -100,7 +100,7 @@ yarn build:firefox
 1. Open `chrome://extensions/` in your browser
 2. Enable "Developer mode"
 3. Tap on "Load unpacked"
-4. Select `<your_local_wigwam_repository_dir>/dist/prod/chrome_unpacked`
+4. Select `<your_local_nexwallet_repository_dir>/dist/prod/chrome_unpacked`
 
 ## Useful scripts
 

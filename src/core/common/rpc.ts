@@ -1,9 +1,9 @@
 import { JsonRpcMethod } from "core/types/rpc";
 
 export const JSONRPC = "2.0";
-export const WIGWAM_STATE = "wigwam_state";
-export const WIGWAM_FAVICON = "wigwam_favicon";
-export const WIGWAM_PHISHING_WARNING = "wigwam_phishing_warning";
+export const NEX_WALLET_STATE = "wigwam_state";
+export const NEX_WALLET_FAVICON = "wigwam_favicon";
+export const NEX_WALLET_PHISHING_WARNING = "wigwam_phishing_warning";
 export const ETH_SUBSCRIPTION = "eth_subscription";
 
 export const AUTHORIZED_RPC_METHODS = new Set<string>([

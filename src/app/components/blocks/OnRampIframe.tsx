@@ -22,7 +22,7 @@ import { useAccounts, useChainId, useRamp } from "app/hooks";
 
 type RampOrder = { [key: string]: any };
 
-const API_KEY = process.env.WIGWAM_ON_RAMP_API_KEY;
+const API_KEY = process.env.NEX_WALLET_ON_RAMP_API_KEY;
 const SUSPENDED = false;
 
 const saveRampActivity = (rampOrder: RampOrder) => {
@@ -113,7 +113,7 @@ const OnRampIframe: FC = () => {
             walletAddress: address,
             disableWalletAddressForm: true,
             themeColor: "#0D1311",
-            exchangeScreenTitle: `Securely buy ${onRampCurrency?.symbol} with Wigwam`,
+            exchangeScreenTitle: `Securely buy ${onRampCurrency?.symbol} with NexWallet`,
           }
         : null,
     [
