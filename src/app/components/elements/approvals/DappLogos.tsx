@@ -2,7 +2,7 @@ import { FC } from "react";
 import classNames from "clsx";
 
 import Avatar from "app/components/elements/Avatar";
-import wigwamLogoUrl from "app/images/wigwam.png";
+import wigwamLogoUrl from "app/images/nexis.png";
 
 const iconsClassNames = classNames(
   "w-[4.65rem] h-[4.75rem] min-w-[4.75rem]",

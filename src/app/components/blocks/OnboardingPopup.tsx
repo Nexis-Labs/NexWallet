@@ -9,7 +9,7 @@ import Button from "app/components/elements/Button";
 import OnboardingFirstImage from "app/images/onboarding_first.png";
 import OnboardingSecondImage from "app/images/onboarding_second.png";
 import OnboardingThirdImage from "app/images/onboarding_third.png";
-import WigwamLogoImage from "app/images/wigwam.png";
+import WigwamLogoImage from "app/images/nexis.png";
 
 type TStepContent = {
   title: string;
