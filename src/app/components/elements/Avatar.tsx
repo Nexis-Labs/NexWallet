@@ -78,7 +78,8 @@ const Avatar = memo(
           className={classNames(
             "block",
             withBorder && [
-              "rounded-full overflow-hidden",
+              // "rounded-full", undo this if u want to keep token icons rounded
+              "overflow-hidden",
               bgDisplayed && "bg-[#1b1d1f]",
             ],
             loadingState === "error" && [
