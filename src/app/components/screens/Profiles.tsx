@@ -84,6 +84,7 @@ const Profiles: FC = () => {
               "transition-colors",
               "hover:bg-[#1b1d1f] focus-visible:bg-[#1b1d1f]",
               "active:bg-brand-main/[.05]",
+              "border: 1px solid #374244",
             )}
           >
             <span className="rounded-full flex items-center justify-center bg-[#1b1d1f] w-24 h-24 mb-4">
