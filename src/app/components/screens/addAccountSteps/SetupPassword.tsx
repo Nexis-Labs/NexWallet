@@ -166,14 +166,18 @@ const SetupPassword = memo(() => {
               </Field>
               <Field name="confirm" validate={required}>
                 {({ input, meta }) => (
-                  <PasswordField
-                    placeholder={"*".repeat(8)}
-                    label="Confirm Password"
-                    error={meta.touched && meta.error}
-                    errorMessage={meta.error}
-                    className="w-full"
-                    {...input}
-                  />
+                  <PasswordValidationField
+                  error={
+                    meta.error &&
+                    meta.submitFailed &&
+                    !meta.modifiedSinceLastSubmit
+                  }
+                  modified={meta.modified}
+                  label="Confirm Password"
+                  placeholder={"*".repeat(8)}
+                  className="w-full mb-3"
+                  {...input}
+                />
                 )}
               </Field>
 

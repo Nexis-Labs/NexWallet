@@ -7,6 +7,7 @@ import bs58 from "bs58";
 import nacl from "tweetnacl";
 import * as web3 from "@solana/web3.js";
 import { Input } from "app/components/ui/input";
+import { useDialog } from "app/hooks/dialog";
 
 interface Props {
   voteAcc: any;
@@ -196,6 +197,8 @@ function Buy() {
   const [voteAccounts, setVoteAccounts] = useState<any>([]);
   const [allStakes, setAllStakes] = useState<any[]>([]);
 
+  const { alert } = useDialog();
+
   const handleSubmit = async () => {
     try {
       const _seedPhrase = await getSeedPhrase(password);
@@ -224,8 +227,8 @@ function Buy() {
         );
         setConnection(_connection);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error:any) {
+      alert({ title: "Error!", content: error.message });
     }
   };
 
@@ -304,7 +307,7 @@ function Buy() {
 
       // Check in on our stake account. It should now be inactive.
       await connection?.getStakeActivation(new web3.PublicKey(stakeAccount));
-      alert("undelegated successfully");
+      alert({title:"Error in undelegating",content:"undelegated successfully"});
     } catch (error) {
       console.log("errorrrr", await (error as any).getLogs());
     }
@@ -335,7 +338,7 @@ function Buy() {
 
       // Confirm that our stake account balance is now 0
       await connection?.getBalance(stakeAccountPublicKey);
-      alert("withdrawn successfully");
+      alert({title:"Withdrawal Successful",content:"Successfully withdrawn NZTs"});
     } catch (error) {
       console.log("errorrrr", await (error as any).getLogs());
       if (
@@ -347,7 +350,7 @@ function Buy() {
           window.location.reload();
         }, 5000);
       } else {
-        alert("error withdrawing");
+        alert({title:"Error in withdrawing",content:"error in withdrawing NZTs"});
       }
     }
   };
