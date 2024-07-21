@@ -23,7 +23,7 @@ export const NEXIS: Network[] = [
     chainId: 1001,
     type: "mainnet",
     rpcUrls: ["https://zkevm-testnet.nexis.network"],
-    chainTag: "nexis",
+    chainTag: "zk-nexis", //detonation: tag determines the icon path
     name: "Nexis",
     nativeCurrency: {
       symbol: "NZT",
