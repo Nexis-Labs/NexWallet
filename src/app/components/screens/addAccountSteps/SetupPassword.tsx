@@ -5,7 +5,6 @@ import { FORM_ERROR, FormApi } from "final-form";
 import { nanoid } from "nanoid";
 import classNames from "clsx";
 import { storage } from "lib/ext/storage";
-
 import { AddAccountParams, SeedPharse } from "core/types";
 import { Setting } from "core/common";
 import { setupWallet, TEvent, trackEvent } from "core/client";
@@ -262,6 +261,51 @@ const SetupPassword = memo(() => {
                                             chainId:1001,
                                             currencySymbol:"zkNZT",
                                             blockExplorer:"https://zkevm-testnet.nexscan.io"
+                                          });
+              //init ethereum mainnet
+                                          addNetworkOnInit({
+                                            nName:"Ethereum Mainnet",
+                                            rpcUrl:"https://eth.rpc.blxrbdn.com",
+                                            chainId:1,
+                                            currencySymbol:"ETH",
+                                            blockExplorer:"https://etherscan.com",
+                  
+                                          });
+              //init bsc mainnet
+                                          addNetworkOnInit({
+                                            nName:"BNB Smart Chain Mainnet",
+                                            rpcUrl:"https://rpc.ankr.com/bsc",
+                                            chainId:56,
+                                            currencySymbol:"BNB",
+                                            blockExplorer:"",
+                          
+                                          });
+              //init arbitrum mainnet
+                                          addNetworkOnInit({
+                                            nName:"Arbitrum One",
+                                            rpcUrl:"https://arbitrum.llamarpc.com",
+                                            chainId:42161,
+                                            currencySymbol:"ETH",
+                                            blockExplorer:"",
+                    
+                                          });
+              //init matic mainnet
+                                          addNetworkOnInit({
+                                            nName:"Polygon Mainnet",
+                                            rpcUrl:"https://rpc.ankr.com/polygon",
+                                            chainId:137,
+                                            currencySymbol:"MATIC",
+                                            blockExplorer:"",
+                      
+                                          });
+              //init linea
+                                          addNetworkOnInit({
+                                            nName:"Linea Goerli",
+                                            rpcUrl:"https://rpc.goerli.linea.build",
+                                            chainId:59140,
+                                            currencySymbol:"ETH",
+                                            blockExplorer:"",
+                             
                                           });
             }}/>
           </form>

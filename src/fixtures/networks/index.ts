@@ -7,6 +7,9 @@ import { parseTokenSlug } from "core/common/tokens";
 
 import { NEXIS } from "./nexis";
 import { ETHEREUM } from "./ethereum";
+import { ARBITRUM } from "./arbitrum";
+import { BSC } from "./bsc";
+import { POLYGON } from "./polygon";
 // import { OPTIMISM } from "./optimism";
 // import { POLYGON } from "./polygon";
 // import { BSC } from "./bsc";
@@ -23,9 +26,9 @@ import { ETHEREUM } from "./ethereum";
 // import { LOCAL } from "./local";
 // import { ZKSYNCERA } from "./zksyncera";
 // import { ARBITRUMNOVA } from "./arbitrumnova";
-// import { BASE } from "./base";
+import { BASE } from "./base";
 // import { SCROLL } from "./scroll";
-// import { LINEA } from "./linea";
+import { LINEA } from "./linea";
 // import { CELO } from "./celo";
 // import { GNOSIS } from "./gnosis";
 // import { MANTLE } from "./mantle";
@@ -40,19 +43,19 @@ import { ETHEREUM } from "./ethereum";
 export const DEFAULT_NETWORKS: Network[] = [
   NEXIS,
   ETHEREUM,
-  // POLYGON,
-  // BSC,
+  POLYGON,
+  BSC,
   // OPTIMISM,
-  // ARBITRUM,
+  ARBITRUM,
   // AVALANCHE,
   // ZKSYNCERA,
   // GNOSIS,
-  // BASE,
+  BASE,
   // CRONOS,
   // FANTOM,
   // MANTLE,
   // CELO,
-  // LINEA,
+  LINEA,
   // SCROLL,
   // BLAST,
   // ROOTSTOCK,
@@ -112,7 +115,6 @@ export const NETWORK_ICON_MAP = new Map<number, string>(
 );
 
 export function getNetworkIconUrl(network: Network) {
-  console.log(NETWORK_ICON_MAP);
   return NETWORK_ICON_MAP.get(network.chainId) ?? network.iconUrls?.[0];
 }
 
