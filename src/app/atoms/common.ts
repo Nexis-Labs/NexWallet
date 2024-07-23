@@ -63,9 +63,9 @@ export const allNetworksAtom = atomWithRepoQuery((query, get) =>
   query(async () => {
     const testnetsEnabled = await get(testNetworksAtom);
     const allNetworks = repo.networks
-    .where("type")
-    .anyOf(["mainnet", ...(testnetsEnabled ? ["testnet", "unknown"] : [])])
-    .toArray();
+      .where("type")
+      .anyOf(["mainnet", ...(testnetsEnabled ? ["testnet", "unknown"] : [])])
+      .toArray();
     return allNetworks;
   }),
 );

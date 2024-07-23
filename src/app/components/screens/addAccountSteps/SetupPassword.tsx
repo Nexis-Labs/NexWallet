@@ -23,7 +23,7 @@ import { useSteps } from "app/hooks/steps";
 import AddAccountContinueButton from "app/components/blocks/AddAccountContinueButton";
 import AddAccountHeader from "app/components/blocks/AddAccountHeader";
 import AcceptCheckbox from "app/components/blocks/AcceptCheckbox";
-import PasswordField from "app/components/elements/PasswordField";
+// import PasswordField from "app/components/elements/PasswordField";
 import PasswordValidationField from "app/components/elements/PasswordValidationField";
 
 type FormValues = {
@@ -38,43 +38,40 @@ const SetupPassword = memo(() => {
 
   const { stateRef, reset } = useSteps();
   const addNetworkOnInit = async ({
-      nName,
-      rpcUrl,
-      chainId,
-      currencySymbol,
-      blockExplorer,
-    }: any) =>{
+    nName,
+    rpcUrl,
+    chainId,
+    currencySymbol,
+    blockExplorer,
+  }: any) => {
+    chainId = Number(chainId);
 
-      chainId = Number(chainId);
-  
-      try {
-        const repoMethod = "add";
-  
-        if (repoMethod === "add") {
-          await storage.put(Setting.TestNetworks, true);
-        }
-        console.log(nName,rpcUrl,chainId,currencySymbol,blockExplorer)
-        await Repo.networks[repoMethod](
-          {
-                chainId,
-                type: "unknown",
-                rpcUrls: [rpcUrl],
-                chainTag: "",
-                name: nName,
-                nativeCurrency: {
-                  name: currencySymbol,
-                  symbol: currencySymbol,
-                  decimals: 18,
-                },
-                explorerUrls: blockExplorer ? [blockExplorer] : [],
-                position: 0,
-              },
-        );
-          trackEvent(TEvent.NetworkCreation);
-      } catch (err: any) {
-        // alert({ title: "Error!", content: err.message });
+    try {
+      const repoMethod = "add";
+
+      if (repoMethod === "add") {
+        await storage.put(Setting.TestNetworks, true);
       }
+      console.log(nName, rpcUrl, chainId, currencySymbol, blockExplorer);
+      await Repo.networks[repoMethod]({
+        chainId,
+        type: "unknown",
+        rpcUrls: [rpcUrl],
+        chainTag: "",
+        name: nName,
+        nativeCurrency: {
+          name: currencySymbol,
+          symbol: currencySymbol,
+          decimals: 18,
+        },
+        explorerUrls: blockExplorer ? [blockExplorer] : [],
+        position: 0,
+      });
+      trackEvent(TEvent.NetworkCreation);
+    } catch (err: any) {
+      // alert({ title: "Error!", content: err.message });
     }
+  };
 
   const addAccountsParams: AddAccountParams[] | undefined =
     stateRef.current.addAccountsParams;
@@ -166,17 +163,17 @@ const SetupPassword = memo(() => {
               <Field name="confirm" validate={required}>
                 {({ input, meta }) => (
                   <PasswordValidationField
-                  error={
-                    meta.error &&
-                    meta.submitFailed &&
-                    !meta.modifiedSinceLastSubmit
-                  }
-                  modified={meta.modified}
-                  label="Confirm Password"
-                  placeholder={"*".repeat(8)}
-                  className="w-full mb-3"
-                  {...input}
-                />
+                    error={
+                      meta.error &&
+                      meta.submitFailed &&
+                      !meta.modifiedSinceLastSubmit
+                    }
+                    modified={meta.modified}
+                    label="Confirm Password"
+                    placeholder={"*".repeat(8)}
+                    className="w-full mb-3"
+                    {...input}
+                  />
                 )}
               </Field>
 
@@ -245,69 +242,67 @@ const SetupPassword = memo(() => {
                 )}
               </Field>
             </div>
-            <AddAccountContinueButton loading={submitting} networkInit={()=>{
-              //init nexis network devnet
-                                          addNetworkOnInit({
-                                            nName:"Nexis Network Devnet",
-                                            rpcUrl:"https://evm-devnet.nexis.network",
-                                            chainId:2371,
-                                            currencySymbol:"NZT",
-                                            blockExplorer:"https://evm-devnet.nexscan.io"
-                                          });
-              //init nexis zkevm devnet
-                                          addNetworkOnInit({
-                                            nName:"Nexis ZkEVM Testnet ",
-                                            rpcUrl:"https://zkevm-testnet.nexis.network",
-                                            chainId:1001,
-                                            currencySymbol:"zkNZT",
-                                            blockExplorer:"https://zkevm-testnet.nexscan.io"
-                                          });
-              //init ethereum mainnet
-                                          addNetworkOnInit({
-                                            nName:"Ethereum Mainnet",
-                                            rpcUrl:"https://eth.rpc.blxrbdn.com",
-                                            chainId:1,
-                                            currencySymbol:"ETH",
-                                            blockExplorer:"https://etherscan.com",
-                  
-                                          });
-              //init bsc mainnet
-                                          addNetworkOnInit({
-                                            nName:"BNB Smart Chain Mainnet",
-                                            rpcUrl:"https://rpc.ankr.com/bsc",
-                                            chainId:56,
-                                            currencySymbol:"BNB",
-                                            blockExplorer:"",
-                          
-                                          });
-              //init arbitrum mainnet
-                                          addNetworkOnInit({
-                                            nName:"Arbitrum One",
-                                            rpcUrl:"https://arbitrum.llamarpc.com",
-                                            chainId:42161,
-                                            currencySymbol:"ETH",
-                                            blockExplorer:"",
-                    
-                                          });
-              //init matic mainnet
-                                          addNetworkOnInit({
-                                            nName:"Polygon Mainnet",
-                                            rpcUrl:"https://rpc.ankr.com/polygon",
-                                            chainId:137,
-                                            currencySymbol:"MATIC",
-                                            blockExplorer:"",
-                      
-                                          });
-              //init linea
-                                          addNetworkOnInit({
-                                            nName:"Linea Goerli",
-                                            rpcUrl:"https://rpc.goerli.linea.build",
-                                            chainId:59140,
-                                            currencySymbol:"ETH",
-                                            blockExplorer:"",
-                             
-                                          });
-            }}/>
+            <AddAccountContinueButton
+              loading={submitting}
+              networkInit={() => {
+                //init nexis network devnet
+                addNetworkOnInit({
+                  nName: "Nexis Network Devnet",
+                  rpcUrl: "https://evm-devnet.nexis.network",
+                  chainId: 2371,
+                  currencySymbol: "NZT",
+                  blockExplorer: "https://evm-devnet.nexscan.io",
+                });
+                //init nexis zkevm devnet
+                addNetworkOnInit({
+                  nName: "Nexis ZkEVM Testnet ",
+                  rpcUrl: "https://zkevm-testnet.nexis.network",
+                  chainId: 1001,
+                  currencySymbol: "zkNZT",
+                  blockExplorer: "https://zkevm-testnet.nexscan.io",
+                });
+                //init ethereum mainnet
+                addNetworkOnInit({
+                  nName: "Ethereum Mainnet",
+                  rpcUrl: "https://eth.rpc.blxrbdn.com",
+                  chainId: 1,
+                  currencySymbol: "ETH",
+                  blockExplorer: "https://etherscan.com",
+                });
+                //init bsc mainnet
+                addNetworkOnInit({
+                  nName: "BNB Smart Chain Mainnet",
+                  rpcUrl: "https://rpc.ankr.com/bsc",
+                  chainId: 56,
+                  currencySymbol: "BNB",
+                  blockExplorer: "",
+                });
+                //init arbitrum mainnet
+                addNetworkOnInit({
+                  nName: "Arbitrum One",
+                  rpcUrl: "https://arbitrum.llamarpc.com",
+                  chainId: 42161,
+                  currencySymbol: "ETH",
+                  blockExplorer: "",
+                });
+                //init matic mainnet
+                addNetworkOnInit({
+                  nName: "Polygon Mainnet",
+                  rpcUrl: "https://rpc.ankr.com/polygon",
+                  chainId: 137,
+                  currencySymbol: "MATIC",
+                  blockExplorer: "",
+                });
+                //init linea
+                addNetworkOnInit({
+                  nName: "Linea Goerli",
+                  rpcUrl: "https://rpc.goerli.linea.build",
+                  chainId: 59140,
+                  currencySymbol: "ETH",
+                  blockExplorer: "",
+                });
+              }}
+            />
           </form>
         )}
       />

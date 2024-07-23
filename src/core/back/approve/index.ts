@@ -132,7 +132,9 @@ export async function processApprove(
             process.env.NODE_ENV !== "production" &&
             process.env.NEX_WALLET_DEV_BLOCK_TX_SEND === "true"
           ) {
-            throw new Error("Blocked by NEX_WALLET_DEV_BLOCK_TX_SEND env variable");
+            throw new Error(
+              "Blocked by NEX_WALLET_DEV_BLOCK_TX_SEND env variable",
+            );
           }
 
           const rpcRes = await pushTransaction(chainId, signedTx);

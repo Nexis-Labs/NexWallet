@@ -42,7 +42,7 @@ function injectEIP1193(key: string, sharedProperty = false) {
 
   let existing = getExisting();
 
-  if (existing?.isNexWallet&& "addProviders" in existing) {
+  if (existing?.isNexWallet && "addProviders" in existing) {
     existing.addProviders(wigwam);
     return;
   }

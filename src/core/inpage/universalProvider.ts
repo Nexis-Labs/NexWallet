@@ -19,14 +19,14 @@ export class UniversalInpageProvider extends Emitter {
     if (!this.#sharedProperty) return this.allProviders;
 
     const allWigwamStrict = this.allProviders.filter(
-      (p) => p.isNexWallet&& p.mmCompatible === MetaMaskCompatibleMode.Strict,
+      (p) => p.isNexWallet && p.mmCompatible === MetaMaskCompatibleMode.Strict,
     );
 
     // If we have wigwam providers with strict metamask compatible mode (use as default)
     if (allWigwamStrict.length > 0) return allWigwamStrict;
 
     return this.allProviders.filter(
-      (p) => !p.isNexWallet|| p.mmCompatible === MetaMaskCompatibleMode.Hybrid,
+      (p) => !p.isNexWallet || p.mmCompatible === MetaMaskCompatibleMode.Hybrid,
     );
   }
 

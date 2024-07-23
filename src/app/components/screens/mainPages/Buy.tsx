@@ -72,9 +72,7 @@ function VoteAccountCard({ voteAcc, seedPhrase }: Props) {
 
   return (
     <div className="max-w-lg rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black border-white mb-4">
-      <div
-        className="bg-black shadow-lg rounded-lg p-4"
-      >
+      <div className="bg-black shadow-lg rounded-lg p-4">
         <h2 className="text-sm font-semibold mb-2">{voteAcc.nodePubkey}</h2>
         {/* <p>Identity {voteAcc.nodePubkey}</p> */}
         {/* <p>Vote Pubkey: {voteAcc.votePubkey}</p> */}
@@ -227,7 +225,7 @@ function Buy() {
         );
         setConnection(_connection);
       }
-    } catch (error:any) {
+    } catch (error: any) {
       alert({ title: "Error!", content: error.message });
     }
   };
@@ -307,7 +305,10 @@ function Buy() {
 
       // Check in on our stake account. It should now be inactive.
       await connection?.getStakeActivation(new web3.PublicKey(stakeAccount));
-      alert({title:"Error in undelegating",content:"undelegated successfully"});
+      alert({
+        title: "Error in undelegating",
+        content: "undelegated successfully",
+      });
     } catch (error) {
       console.log("errorrrr", await (error as any).getLogs());
     }
@@ -338,7 +339,10 @@ function Buy() {
 
       // Confirm that our stake account balance is now 0
       await connection?.getBalance(stakeAccountPublicKey);
-      alert({title:"Withdrawal Successful",content:"Successfully withdrawn NZTs"});
+      alert({
+        title: "Withdrawal Successful",
+        content: "Successfully withdrawn NZTs",
+      });
     } catch (error) {
       console.log("errorrrr", await (error as any).getLogs());
       if (
@@ -350,7 +354,10 @@ function Buy() {
           window.location.reload();
         }, 5000);
       } else {
-        alert({title:"Error in withdrawing",content:"error in withdrawing NZTs"});
+        alert({
+          title: "Error in withdrawing",
+          content: "error in withdrawing NZTs",
+        });
       }
     }
   };

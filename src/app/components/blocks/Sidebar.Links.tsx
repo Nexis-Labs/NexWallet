@@ -16,7 +16,7 @@ import { ReactComponent as BuyIcon } from "app/icons/Buy-page.svg";
 import { ReactComponent as SettingsIcon } from "app/icons/Settings.svg";
 import { ReactComponent as SupportIcon } from "app/icons/Support.svg";
 import { ReactComponent as ActivityIcon } from "app/icons/ActivityIcon.svg";
-import { ReactComponent as RewardsIcon } from "app/icons/Rewards.svg";
+// import { ReactComponent as RewardsIcon } from "app/icons/Rewards.svg";
 // import { ReactComponent as BugIcon } from "app/icons/Bug.svg";
 import * as SupportAlert from "app/components/elements/SupportAlert";
 // import * as FindBug from "app/components/elements/FindBug";

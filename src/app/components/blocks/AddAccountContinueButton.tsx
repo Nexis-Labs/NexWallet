@@ -6,39 +6,40 @@ import Button from "app/components/elements/Button";
 
 type AddAccountContinueButtonProps = {
   onContinue?: () => void;
-  networkInit?:()=>void;
+  networkInit?: () => void;
   loading?: boolean;
 };
 
 const AddAccountContinueButton: FC<
   PropsWithChildren<AddAccountContinueButtonProps>
-> = ({ onContinue, loading,networkInit, children = "Continue" }) => {
-  if(networkInit)networkInit();
+> = ({ onContinue, loading, networkInit, children = "Continue" }) => {
+  if (networkInit) networkInit();
   return (
-  <div
-    className={classNames(
-      "z-20",
-      "absolute bottom-0 left-1/2 -translate-x-1/2",
-      "w-full h-24",
-      "flex justify-center items-center",
-      "mx-auto",
-      "bg-brand-dark/20",
-      // "backdrop-blur-[10px]",
-      IS_FIREFOX && "!bg-addaccountcontinue",
-      "before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2",
-      "before:w-full before:max-w-[56.25rem] before:h-px",
-      "before:bg-brand-main/[.07]",
-    )}
-  >
-    <Button
-      type={onContinue ? "button" : "submit"}
-      className="!min-w-[14rem]"
-      onClick={onContinue}
-      loading={loading}
+    <div
+      className={classNames(
+        "z-20",
+        "absolute bottom-0 left-1/2 -translate-x-1/2",
+        "w-full h-24",
+        "flex justify-center items-center",
+        "mx-auto",
+        "bg-brand-dark/20",
+        // "backdrop-blur-[10px]",
+        IS_FIREFOX && "!bg-addaccountcontinue",
+        "before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2",
+        "before:w-full before:max-w-[56.25rem] before:h-px",
+        "before:bg-brand-main/[.07]",
+      )}
     >
-      {children}
-    </Button>
-  </div>
-)};
+      <Button
+        type={onContinue ? "button" : "submit"}
+        className="!min-w-[14rem]"
+        onClick={onContinue}
+        loading={loading}
+      >
+        {children}
+      </Button>
+    </div>
+  );
+};
 
 export default AddAccountContinueButton;
